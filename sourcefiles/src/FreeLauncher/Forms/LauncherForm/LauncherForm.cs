@@ -353,13 +353,6 @@ namespace FreeLauncher.Forms
                         JObject properties = new JObject {
                             new JProperty("Launcher", new JArray("rakion99"))
                         };
-                        if (_selectedProfile.ConnectionSettigs != null) {
-                            selectedVersionManifest.ArgCollection = new ArgumentCollection();
-                            selectedVersionManifest.ArgCollection.Add("server",
-                                _selectedProfile.ConnectionSettigs.ServerIp);
-                            selectedVersionManifest.ArgCollection.Add("port",
-                                _selectedProfile.ConnectionSettigs.ServerPort.ToString());
-                        }
                         Dictionary<string, string> ServerArgsDictionary = new Dictionary<string, string> { };
                         string javaArguments = _selectedProfile.JavaArguments == null
                             ? string.Empty
@@ -441,6 +434,15 @@ namespace FreeLauncher.Forms
                         };
                         string gameArguments, jvmArguments, ServerArguments;
                         if (selectedVersionManifest.Type == VersionManifestType.V2) {
+                            if (_selectedProfile.ConnectionSettigs != null)
+                            {
+                                selectedVersionManifest.ArgCollection = new ArgumentCollection();
+                                selectedVersionManifest.ArgCollection.Add("server",
+                                    _selectedProfile.ConnectionSettigs.ServerIp);
+                                selectedVersionManifest.ArgCollection.Add("port",
+                                    _selectedProfile.ConnectionSettigs.ServerPort.ToString());
+                            }
+
                             List<Rule> requiredRules = new List<Rule> {
                                 new Rule {
                                     Action = "allow",
@@ -478,7 +480,14 @@ namespace FreeLauncher.Forms
                             string nativesPath = Path.Combine(_configuration.McDirectory, "natives");
                             nativesPath = nativesPath.Contains(' ') ? $@"""{nativesPath}""" : nativesPath;
                             gameArguments = selectedVersionManifest.ArgCollection.ToString(gameArgumentDictionary);
-                            ServerArguments = selectedVersionManifest.ArgCollection?.ToString(ServerArgsDictionary);
+                            if (_selectedProfile.ConnectionSettigs != null)
+                            {
+                                ServerArguments = $"--server {_selectedProfile.ConnectionSettigs.ServerIp} --port {_selectedProfile.ConnectionSettigs.ServerPort.ToString()}";
+                            }
+                            else
+                            {
+                                ServerArguments = "";
+                            }
                             jvmArguments = javaArguments +
                                 $"-Djava.library.path={nativesPath} -cp {(libraries.Contains(' ') ? $@"""{libraries}""" : libraries)}";
                         }
