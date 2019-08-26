@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -232,7 +231,7 @@ namespace FreeLauncher.Forms
         private void AddProfile_Click(object sender, EventArgs e)
         {
             Profile editedProfile = Profile.ParseProfile(_selectedProfile.ToString());
-            editedProfile.ProfileName = $"Copia de '{_selectedProfile.ProfileName}'";
+            editedProfile.ProfileName = $"Copy of '{_selectedProfile.ProfileName}'";
             ProfileForm pf = new ProfileForm(editedProfile, _configuration) {
                 Text = _configuration.Localization.AddingProfileTitle
             };
