@@ -72,7 +72,7 @@ namespace FreeLauncher.Forms
             this.EnableMinecraftLogging = new Telerik.WinControls.UI.RadCheckBox();
             this.MainGroupBox = new Telerik.WinControls.UI.RadGroupBox();
             this.CheckUpdatesCheckBox = new Telerik.WinControls.UI.RadCheckBox();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.Languagelabel = new Telerik.WinControls.UI.RadLabel();
             this.LangDropDownList = new Telerik.WinControls.UI.RadDropDownList();
             this.DownloadAssetsBox = new Telerik.WinControls.UI.RadCheckBox();
             this.AboutVersion = new Telerik.WinControls.UI.RadLabel();
@@ -124,7 +124,7 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.MainGroupBox)).BeginInit();
             this.MainGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckUpdatesCheckBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Languagelabel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LangDropDownList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).BeginInit();
@@ -499,7 +499,7 @@ namespace FreeLauncher.Forms
             this.MainGroupBox.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.MainGroupBox.BackColor = System.Drawing.Color.Transparent;
             this.MainGroupBox.Controls.Add(this.CheckUpdatesCheckBox);
-            this.MainGroupBox.Controls.Add(this.radLabel4);
+            this.MainGroupBox.Controls.Add(this.Languagelabel);
             this.MainGroupBox.Controls.Add(this.LangDropDownList);
             this.MainGroupBox.Controls.Add(this.DownloadAssetsBox);
             this.MainGroupBox.HeaderText = "Main";
@@ -512,24 +512,25 @@ namespace FreeLauncher.Forms
             // 
             // CheckUpdatesCheckBox
             // 
+            this.CheckUpdatesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckUpdatesCheckBox.Location = new System.Drawing.Point(5, 51);
             this.CheckUpdatesCheckBox.Name = "CheckUpdatesCheckBox";
             this.CheckUpdatesCheckBox.Size = new System.Drawing.Size(146, 18);
             this.CheckUpdatesCheckBox.TabIndex = 6;
             this.CheckUpdatesCheckBox.Text = "Check Launcher Updates";
             this.CheckUpdatesCheckBox.ThemeName = "VisualStudio2012Dark";
-            this.CheckUpdatesCheckBox.Visible = false;
+            this.CheckUpdatesCheckBox.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
             // 
-            // radLabel4
+            // Languagelabel
             // 
-            this.radLabel4.Location = new System.Drawing.Point(5, 21);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(43, 18);
-            this.radLabel4.TabIndex = 5;
-            this.radLabel4.Text = "Idioma:";
-            this.radLabel4.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel4.GetChildAt(0))).Text = "Idioma:";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radLabel4.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            this.Languagelabel.Location = new System.Drawing.Point(5, 21);
+            this.Languagelabel.Name = "Languagelabel";
+            this.Languagelabel.Size = new System.Drawing.Size(43, 18);
+            this.Languagelabel.TabIndex = 5;
+            this.Languagelabel.Text = "Idioma:";
+            this.Languagelabel.ThemeName = "VisualStudio2012Dark";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.Languagelabel.GetChildAt(0))).Text = "Idioma:";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.Languagelabel.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // LangDropDownList
             // 
@@ -594,9 +595,9 @@ namespace FreeLauncher.Forms
             this.MCofflineDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MCofflineDescLabel.Location = new System.Drawing.Point(14, 184);
             this.MCofflineDescLabel.Name = "MCofflineDescLabel";
-            this.MCofflineDescLabel.Size = new System.Drawing.Size(55, 17);
+            this.MCofflineDescLabel.Size = new System.Drawing.Size(64, 17);
             this.MCofflineDescLabel.TabIndex = 9;
-            this.MCofflineDescLabel.Text = "Anycraft";
+            this.MCofflineDescLabel.Text = "dedepete";
             // 
             // radLabel1
             // 
@@ -727,7 +728,7 @@ namespace FreeLauncher.Forms
             this.NicknameDropDownList.AutoCompleteValueMember = null;
             this.NicknameDropDownList.Location = new System.Drawing.Point(314, 6);
             this.NicknameDropDownList.Name = "NicknameDropDownList";
-            this.NicknameDropDownList.NullText = "Usuario";
+            this.NicknameDropDownList.NullText = "Username";
             this.NicknameDropDownList.Size = new System.Drawing.Size(196, 24);
             this.NicknameDropDownList.TabIndex = 3;
             this.NicknameDropDownList.ThemeName = "VisualStudio2012Dark";
@@ -857,7 +858,7 @@ namespace FreeLauncher.Forms
             this.MainGroupBox.ResumeLayout(false);
             this.MainGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CheckUpdatesCheckBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Languagelabel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LangDropDownList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).EndInit();
@@ -924,7 +925,7 @@ namespace FreeLauncher.Forms
         public RadCheckBox CloseGameOutput;
         public RadCheckBox EnableMinecraftLogging;
         private RadGroupBox MainGroupBox;
-        public RadLabel radLabel4;
+        public RadLabel Languagelabel;
         private RadDropDownList LangDropDownList;
         public RadCheckBox DownloadAssetsBox;
         private Label CopyrightInfoLabel;

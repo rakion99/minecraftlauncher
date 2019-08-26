@@ -92,7 +92,7 @@ namespace FreeLauncher.Forms
         public static string checkingversionjson, lastsnapshot, lastrelease, localversions, remoteversion, noupdatefound, writingversionlist, cantcheckversions,
             correctlystarted, deletedsuccesfully, deleteerror, profilecorruptempty, profileerror1, profileerror2, profilecopy, checkingversionavailability,
             checkingversionavailabilityfinish, downloading, offlinemode, cantdownloadversion, logsdisabled, preparinglibraries, downloadfailed, cantdownload,
-            finishedlibraries, checkinggamedata, downloadinggamedata, gamedatafinished, cantconnectinternet, checkinternet;
+            finishedlibraries, checkinggamedata, downloadinggamedata, gamedatafinished, cantconnectinternet, checkinternet, langlabel;
 
         #endregion
 
@@ -103,7 +103,7 @@ namespace FreeLauncher.Forms
             InitializeComponent();
 
             _cfg = _configuration.ApplicationConfiguration;
-            CheckUpdatesCheckBox.Checked = false;
+            CheckUpdatesCheckBox.Checked = _cfg.CheckLauncherUpdates;
             DownloadAssetsBox.Checked = _cfg.SkipAssetsDownload;
             EnableMinecraftLogging.Checked = _cfg.EnableGameLogging;
             CloseGameOutput.Checked = _cfg.CloseTabAfterSuccessfulExitCode;
@@ -179,7 +179,7 @@ namespace FreeLauncher.Forms
 
         private void LauncherForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _cfg.CheckLauncherUpdates = false;
+            _cfg.CheckLauncherUpdates = CheckUpdatesCheckBox.Checked;
             _cfg.SkipAssetsDownload = DownloadAssetsBox.Checked;
             _cfg.EnableGameLogging = EnableMinecraftLogging.Checked;
             _cfg.CloseTabAfterSuccessfulExitCode = CloseGameOutput.Checked;
@@ -1101,6 +1101,8 @@ namespace FreeLauncher.Forms
             AboutPage.Text = localization.AboutTabText;
             AboutPageViewPage.Text = localization.AboutTabText;
 
+            Languagelabel.Text = localization.LangLabel;
+
             LaunchButton.Text = localization.LaunchButtonText;
             AddProfile.Text = localization.AddProfileButtonText;
             EditProfileButton.Text = localization.EditProfileButtonText;
@@ -1352,7 +1354,7 @@ namespace FreeLauncher.Forms
                         (sender, args) => {
                             lock (this) {
                                 _outputInfoBuilder.Append(
-                                    $"{(_outputInfoBuilder.Length == 0 ? string.Empty : Environment.NewLine)}[O] {args.Data}");
+                                    $"{(_outputInfoBuilder.Length == 0 ? string.Empty : Environment.NewLine)} {args.Data}");
                             }
                         };
                 } else {
@@ -1362,7 +1364,7 @@ namespace FreeLauncher.Forms
                     (sender, args) => {
                         lock (this) {
                             _outputErrorBuilder.Append(
-                                $"{(_outputErrorBuilder.Length == 0 ? string.Empty : Environment.NewLine)}[E] {args.Data}");
+                                $"{(_outputErrorBuilder.Length == 0 ? string.Empty : Environment.NewLine)} {args.Data}");
                         }
                     };
             }
@@ -1384,11 +1386,17 @@ namespace FreeLauncher.Forms
                             (!_minecraftProcess.HasExited ? "Running" : "Stopped, printing output");
                         Application.DoEvents();
                         if (_outputInfoBuilder.Length > 0) {
-                            AppendLog(_outputInfoBuilder.ToString());
+                            lock (this)
+                            {
+                                AppendLog(_outputInfoBuilder.ToString());
+                            }
                             _outputInfoBuilder.Clear();
                         }
                         if (_outputErrorBuilder.Length > 0) {
-                            AppendLog(_outputErrorBuilder.ToString(), true);
+                            lock (this)
+                            {
+                                AppendLog(_outputErrorBuilder.ToString(), true);
+                            }
                             _outputErrorBuilder.Clear();
                         }
                     });

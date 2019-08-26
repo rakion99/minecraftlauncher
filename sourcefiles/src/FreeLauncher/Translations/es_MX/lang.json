@@ -126,5 +126,7 @@
   "Javanotfound": "No se encontro Java Instalado!",
   "Needjava": "Se ocupa tener Java instalado para iniciar minecraft\nEl launcher se cerrara",
   "Cantconnectinternet": "No se pudo conectar a internet o el modo sin conexion fue activado.",
-  "Checkinternet": "Porfavor comprueba tu conexion a internet y reinicia el Launcher."
+  "Checkinternet": "Porfavor comprueba tu conexion a internet y reinicia el Launcher.",
+  "UpdateLangen_Uk": "Hay una actualizacion para el idioma en_Uk\nQuieres actualizarlo?",
+  "LangLabel": "Idioma"
 }

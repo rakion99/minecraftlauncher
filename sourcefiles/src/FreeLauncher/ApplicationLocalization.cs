@@ -210,5 +210,7 @@
         public string Needjava { get; set; }
         public string Cantconnectinternet { get; set; }
         public string Checkinternet { get; set; }
+        public string UpdateLangen_Uk { get; set; }
+        public string LangLabel { get; set; }
     }
 }

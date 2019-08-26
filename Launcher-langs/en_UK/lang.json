@@ -126,5 +126,7 @@
   "Javanotfound": "Cannot find Java installed!",
   "Needjava": "Need Java installed to run minecraft\nLauncher will now close",
   "Cantconnectinternet": "Cant connect to Internet or Offline mode is on.",
-  "Checkinternet": "Please check your Internet connection and restart this launcher."
+  "Checkinternet": "Please check your Internet connection and restart this launcher.",
+  "UpdateLangen_Uk": "An update for en_Uk language is available\n\nDo you want to update?",
+  "LangLabel": "Language"
 }
