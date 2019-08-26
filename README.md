@@ -1,3 +1,4 @@
+
 # minecraftlauncher
  Minecraft C# Launcher open source
  i only edited to my like, added and fixed some stuff
@@ -13,6 +14,14 @@
  ![](https://i.imgur.com/hB1Mkin.png)
  
  ![](https://i.imgur.com/H3neqW9.png)
+ 
+# Requirements:
+
+* At least .Net Framework 4.7.2
+* Java
+* Around 300mb of Disk space(Launcher only need 5Mb)
+
+**See the wiki for how to use and more: [Wiki](https://github.com/rakion99/minecraftlauncher/wiki)**
 
 # Credits:
  dedepete for making it https://github.com/dedepete
