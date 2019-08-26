@@ -209,7 +209,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Translations\es_MX\lang.json" />
+    <EmbeddedResource Include="Translations\es_MX.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\minecraft-logo.png" />

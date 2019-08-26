@@ -48,12 +48,12 @@ namespace FreeLauncher.Forms.UpdateForm
                     using (WebClient WebC2 = new WebClient())
                     {
                         DownloadingLabel.Text = "Downloading en_UK Lang Update";
-                        Directory.CreateDirectory(@"tmp\Launcher-langs\en_UK");
+                        Directory.CreateDirectory(@"tmp\Launcher-langs");
                         WebC2.DownloadProgressChanged += WebC_DownloadProgressChanged;
                         WebC2.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadlangCompleted);
                         string en_ukDownloadLocation = WebC2.DownloadString("http://rakion99.github.io/minecraftlauncher/en_ukLocation.txt");
                         var data = await WebC2.DownloadDataTaskAsync(new Uri(en_ukDownloadLocation));
-                        File.WriteAllBytes(@".\tmp\Launcher-langs\en_UK\lang.json", data);
+                        File.WriteAllBytes(@".\tmp\Launcher-langs\en_UK.json", data);
                     }
                 }
             }
@@ -93,8 +93,8 @@ namespace FreeLauncher.Forms.UpdateForm
                         if (Directory.Exists(@".\Launcher-langs"))
                         {
                             Thread.Sleep(100);
-                            File.Delete(@".\Launcher-langs\en_UK\lang.json");
-                            File.Move(@".\tmp\Launcher-langs\en_UK\lang.json", @".\Launcher-langs\en_UK\lang.json");
+                            File.Delete(@".\Launcher-langs\en_UK.json");
+                            File.Move(@".\tmp\Launcher-langs\en_UK.json", @".\Launcher-langs\en_UK.json");
                             Directory.Delete(@".\tmp", true);
                         }
                         else

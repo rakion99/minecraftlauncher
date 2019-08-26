@@ -66,7 +66,7 @@ namespace FreeLauncher
         private void LoadLocalization()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            string s = new StreamReader(assembly.GetManifestResourceStream("FreeLauncher.Translations.es_MX.lang.json")).ReadToEnd();
+            string s = new StreamReader(assembly.GetManifestResourceStream("FreeLauncher.Translations.es_MX.json")).ReadToEnd();
             LocalizationsList.Add(JObject.Parse(s)["LanguageTag"].ToString(), JsonConvert.DeserializeObject<ApplicationLocalization>(s));
             if (ApplicationConfiguration.SelectedLanguage == "es_MX") {
                 Localization = LocalizationsList["es_MX"];
@@ -77,7 +77,6 @@ namespace FreeLauncher
             }
             foreach (var local in langsDirectory
                 .GetFiles("*.json", SearchOption.AllDirectories)
-                .Where(file => file.Name.Contains("lang"))
                 .Select(file => JObject.Parse(File.ReadAllText(file.FullName)))
                 .Select(jo => JsonConvert.DeserializeObject<ApplicationLocalization>(jo.ToString()))) {
                 if (LocalizationsList.ContainsKey(local.LanguageTag)) {

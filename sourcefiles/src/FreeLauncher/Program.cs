@@ -35,7 +35,7 @@ namespace FreeLauncher
             string Updateinfotext = localization.UpdateInfo;
             string Updatelangen_uk = localization.UpdateLangen_Uk;
 
-            if (File.Exists("./Launcher-langs/en_UK/lang.json"))
+            if (File.Exists("./Launcher-langs/en_UK.json"))
             {
                 langen_UK = true;
             }
@@ -64,7 +64,7 @@ namespace FreeLauncher
 
                         if (langen_UK)
                         {
-                            string Langen_UKCurrent = Getsha256("./Launcher-langs/en_UK/lang.json");
+                            string Langen_UKCurrent = Getsha256("./Launcher-langs/en_UK.json");
                             string Langen_Ukwebhash = client.DownloadString("http://rakion99.github.io/minecraftlauncher/langen_ukhash.txt");
                             if (Langen_Ukwebhash != Langen_UKCurrent)
                             {
