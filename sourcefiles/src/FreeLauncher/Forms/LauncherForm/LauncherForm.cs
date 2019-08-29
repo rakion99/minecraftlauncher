@@ -164,8 +164,6 @@ namespace FreeLauncher.Forms
 <i>{ProductName} {ProductVersion}</i>
 </body></html>";
                 Text += " [OFFLINE]";
-            } else {
-                newsBrowser.Navigate("http://rakion99.github.io/");
             }
 
             UpdateVersions();
@@ -531,6 +529,12 @@ namespace FreeLauncher.Forms
         private void newsBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             ProcessUrl();
+            if (!_configuration.Arguments.OfflineMode)
+            {
+                e.Cancel = true;
+                Process.Start(e.Url.ToString());
+            }
+            
         }
 
         private void newsBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
@@ -543,7 +547,7 @@ namespace FreeLauncher.Forms
             if (_configuration.Arguments.OfflineMode) {
                 return;
             }
-            if (newsBrowser.Url != new Uri("http://rakion99.github.io/")) {
+            if (newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/")) {
                 BackWebButton.Enabled = newsBrowser.CanGoBack;
                 ForwardWebButton.Enabled = newsBrowser.CanGoForward;
                 navBar.Text = newsBrowser.Url?.ToString();

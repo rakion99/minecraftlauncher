@@ -180,7 +180,7 @@ namespace FreeLauncher.Forms
             this.newsBrowser.ScriptErrorsSuppressed = true;
             this.newsBrowser.Size = new System.Drawing.Size(848, 299);
             this.newsBrowser.TabIndex = 0;
-            this.newsBrowser.Url = new System.Uri("about:blank", System.UriKind.Absolute);
+            this.newsBrowser.Url = new System.Uri("https://rakion99.github.io/minecraftlauncher/", System.UriKind.Absolute);
             this.newsBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.newsBrowser_Navigated);
             this.newsBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.newsBrowser_Navigating);
             // 
@@ -398,7 +398,6 @@ namespace FreeLauncher.Forms
             // AboutPageViewPage
             // 
             this.AboutPageViewPage.Controls.Add(this.radScrollablePanel2);
-            this.AboutPageViewPage.ItemSize = new System.Drawing.SizeF(848F, 24F);
             this.AboutPageViewPage.Location = new System.Drawing.Point(5, 5);
             this.AboutPageViewPage.Name = "AboutPageViewPage";
             this.AboutPageViewPage.Size = new System.Drawing.Size(838, 293);
