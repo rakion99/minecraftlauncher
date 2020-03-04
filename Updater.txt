@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Launcher>
+    <version>1.0.4.23644</version>
+    <DownloadUrl>https://github.com/rakion99/minecraftlauncher/releases/download/1.0.4.23644/Launcher.exe</DownloadUrl>
+    <Languages>
+        <en_UK>
+            <SHA384>180CB0083F55932862A790E6CE33EFC82EFAE6C82867D3F7D09361B78E623FB6B52092CCBC9675C594CACB7EE372CEEE</SHA384>
+            <DownloadUrl>https://raw.githubusercontent.com/rakion99/minecraftlauncher/master/Launcher-langs/en_UK.json</DownloadUrl>
+        </en_UK>
+    </Languages>
+</Launcher>
