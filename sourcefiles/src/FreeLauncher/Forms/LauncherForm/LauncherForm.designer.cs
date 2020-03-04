@@ -426,7 +426,6 @@ namespace FreeLauncher.Forms
             this.radScrollablePanel2.PanelContainer.Size = new System.Drawing.Size(836, 291);
             this.radScrollablePanel2.Size = new System.Drawing.Size(838, 293);
             this.radScrollablePanel2.TabIndex = 9;
-            this.radScrollablePanel2.Text = "radScrollablePanel2";
             this.radScrollablePanel2.ThemeName = "VisualStudio2012Dark";
             // 
             // label1
@@ -566,9 +565,9 @@ namespace FreeLauncher.Forms
             this.AboutVersion.Size = new System.Drawing.Size(58, 18);
             this.AboutVersion.TabIndex = 1;
             this.AboutVersion.Text = "0.0.0.000";
-            this.AboutVersion.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.AboutVersion.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.AboutVersion.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.AboutVersion.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.AboutVersion.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             ((Telerik.WinControls.UI.RadLabelElement)(this.AboutVersion.GetChildAt(0))).Text = "0.0.0.000";
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.AboutVersion.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
             // 

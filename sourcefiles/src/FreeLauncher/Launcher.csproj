@@ -120,19 +120,20 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls">
-      <HintPath>..\..\lib\RCWF\2017.1.221.40\Telerik.WinControls.dll</HintPath>
+      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark">
-      <HintPath>..\..\lib\RCWF\2017.1.221.40\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinControls.UI">
-      <HintPath>..\..\lib\RCWF\2017.1.221.40\Telerik.WinControls.UI.dll</HintPath>
+      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design">
-      <HintPath>..\..\lib\RCWF\2017.1.221.40\Telerik.WinControls.UI.Design.dll</HintPath>
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
     <Reference Include="TelerikCommon">
-      <HintPath>..\..\lib\RCWF\2017.1.221.40\TelerikCommon.dll</HintPath>
+      <HintPath>..\..\lib\RCWF\2020.R1\TelerikCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
