@@ -33,17 +33,17 @@ namespace FreeLauncher.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn7 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn8 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn9 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn10 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn12 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn13 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn14 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn15 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn16 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn7 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn8 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn9 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn10 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             this.vs12theme = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
@@ -290,25 +290,25 @@ namespace FreeLauncher.Forms
             this.versionsListView.AllowRemove = false;
             this.versionsListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.versionsListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn6.HeaderText = "Version";
-            listViewDetailColumn6.Width = 150F;
-            listViewDetailColumn7.HeaderText = "Type";
-            listViewDetailColumn7.Width = 100F;
-            listViewDetailColumn8.HeaderText = "Launch date";
-            listViewDetailColumn8.Width = 150F;
-            listViewDetailColumn9.HeaderText = "Last update";
-            listViewDetailColumn9.Width = 150F;
-            listViewDetailColumn10.HeaderText = "Resource index";
-            listViewDetailColumn10.Width = 120F;
-            listViewDetailColumn11.HeaderText = "inherits";
-            listViewDetailColumn11.Width = 100F;
+            listViewDetailColumn1.HeaderText = "Version";
+            listViewDetailColumn1.Width = 150F;
+            listViewDetailColumn2.HeaderText = "Type";
+            listViewDetailColumn2.Width = 100F;
+            listViewDetailColumn3.HeaderText = "Launch date";
+            listViewDetailColumn3.Width = 150F;
+            listViewDetailColumn4.HeaderText = "Last update";
+            listViewDetailColumn4.Width = 150F;
+            listViewDetailColumn5.HeaderText = "Resource index";
+            listViewDetailColumn5.Width = 120F;
+            listViewDetailColumn6.HeaderText = "inherits";
+            listViewDetailColumn6.Width = 100F;
             this.versionsListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn6,
-            listViewDetailColumn7,
-            listViewDetailColumn8,
-            listViewDetailColumn9,
-            listViewDetailColumn10,
-            listViewDetailColumn11});
+            listViewDetailColumn1,
+            listViewDetailColumn2,
+            listViewDetailColumn3,
+            listViewDetailColumn4,
+            listViewDetailColumn5,
+            listViewDetailColumn6});
             this.versionsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.versionsListView.EnableColumnSort = true;
             this.versionsListView.EnableFiltering = true;
@@ -343,18 +343,18 @@ namespace FreeLauncher.Forms
             this.profilesListView.AllowRemove = false;
             this.profilesListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.profilesListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn12.HeaderText = "Perfil";
-            listViewDetailColumn12.Visible = false;
-            listViewDetailColumn13.HeaderText = "Nombre Perfil";
-            listViewDetailColumn14.HeaderText = "Version";
-            listViewDetailColumn15.HeaderText = "Tipo de Version";
-            listViewDetailColumn16.HeaderText = "Visibilidad del Launcher";
+            listViewDetailColumn7.HeaderText = "Perfil";
+            listViewDetailColumn7.Visible = false;
+            listViewDetailColumn8.HeaderText = "Nombre Perfil";
+            listViewDetailColumn9.HeaderText = "Version";
+            listViewDetailColumn10.HeaderText = "Tipo de Version";
+            listViewDetailColumn11.HeaderText = "Visibilidad del Launcher";
             this.profilesListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn12,
-            listViewDetailColumn13,
-            listViewDetailColumn14,
-            listViewDetailColumn15,
-            listViewDetailColumn16});
+            listViewDetailColumn7,
+            listViewDetailColumn8,
+            listViewDetailColumn9,
+            listViewDetailColumn10,
+            listViewDetailColumn11});
             this.profilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profilesListView.EnableColumnSort = true;
             this.profilesListView.EnableFiltering = true;

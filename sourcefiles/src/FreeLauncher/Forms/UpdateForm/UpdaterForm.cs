@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
-using Telerik.WinControls.UI.Data;
 
 namespace FreeLauncher.Forms.UpdateForm
 {
@@ -38,8 +30,7 @@ namespace FreeLauncher.Forms.UpdateForm
                         Directory.CreateDirectory("tmp");
                         WebC.DownloadProgressChanged += WebC_DownloadProgressChanged;
                         WebC.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadUICompleted);
-                        string ExeDownloadLocation = WebC.DownloadString("https://rakion99.github.io/minecraftlauncher/DownloadLocation.txt");
-                        var data = await WebC.DownloadDataTaskAsync(new Uri(ExeDownloadLocation));
+                        var data = await WebC.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode("/Launcher/DownloadUrl")));
                         File.WriteAllBytes(@".\tmp\Launcher.exe", data);
                     }
                 }
@@ -47,12 +38,11 @@ namespace FreeLauncher.Forms.UpdateForm
                 {
                     using (WebClient WebC2 = new WebClient())
                     {
-                        DownloadingLabel.Text = "Downloading en_UK Lang Update";
+                        DownloadingLabel.Text = "Downloading en_UK Language Update";
                         Directory.CreateDirectory(@"tmp\Launcher-langs");
                         WebC2.DownloadProgressChanged += WebC_DownloadProgressChanged;
                         WebC2.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadlangCompleted);
-                        string en_ukDownloadLocation = WebC2.DownloadString("http://rakion99.github.io/minecraftlauncher/en_ukLocation.txt");
-                        var data = await WebC2.DownloadDataTaskAsync(new Uri(en_ukDownloadLocation));
+                        var data = await WebC2.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode("/Launcher/Languages/en_UK/DownloadUrl")));
                         File.WriteAllBytes(@".\tmp\Launcher-langs\en_UK.json", data);
                     }
                 }

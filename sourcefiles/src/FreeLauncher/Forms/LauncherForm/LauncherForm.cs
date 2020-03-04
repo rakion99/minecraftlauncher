@@ -102,7 +102,7 @@ namespace FreeLauncher.Forms
             InitializeComponent();
 
             _cfg = _configuration.ApplicationConfiguration;
-            CheckUpdatesCheckBox.Checked = _cfg.CheckLauncherUpdates;
+            CheckUpdatesCheckBox.Checked = _cfg.CheckforLauncherUpdates;
             DownloadAssetsBox.Checked = _cfg.SkipAssetsDownload;
             EnableMinecraftLogging.Checked = _cfg.EnableGameLogging;
             CloseGameOutput.Checked = _cfg.CloseTabAfterSuccessfulExitCode;
@@ -176,7 +176,7 @@ namespace FreeLauncher.Forms
 
         private void LauncherForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _cfg.CheckLauncherUpdates = CheckUpdatesCheckBox.Checked;
+            _cfg.CheckforLauncherUpdates = CheckUpdatesCheckBox.Checked;
             _cfg.SkipAssetsDownload = DownloadAssetsBox.Checked;
             _cfg.EnableGameLogging = EnableMinecraftLogging.Checked;
             _cfg.CloseTabAfterSuccessfulExitCode = CloseGameOutput.Checked;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml;
 using FreeLauncher.Forms;
 using Telerik.WinControls;
 
@@ -19,14 +19,17 @@ namespace FreeLauncher
             VersionCheck(args);
         }
 
+        private static readonly XmlDocument XmlUpdateFileDoc = new XmlDocument();
+
         public static bool UpdateLauncher = false;
         private static Configuration _configuration;
         private static bool langen_UK = false;
         public static bool Updaterlangen_uk = false;
 
+        public static string XmlGetSingleNode(string nodelocation) => XmlUpdateFileDoc.DocumentElement.SelectSingleNode(nodelocation).InnerText;
+
         private static void VersionCheck(string[] args)
         {
-
             Configuration configuration = new Configuration(args);
             _configuration = configuration;
             ApplicationConfiguration _cfg = _configuration.ApplicationConfiguration;
@@ -40,20 +43,19 @@ namespace FreeLauncher
                 langen_UK = true;
             }
 
-            if (_cfg.CheckLauncherUpdates)
+            if (_cfg.CheckforLauncherUpdates)
             {
                 try
                 {
                     using (WebClient client = new WebClient())
                     {
                         client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                        string UIWebVersion = client.DownloadString("https://rakion99.github.io/minecraftlauncher/Version.txt");
+                        XmlUpdateFileDoc.LoadXml(client.DownloadString("https://rakion99.github.io/minecraftlauncher/Updater.xml"));
                         string UICurrentVerion = Application.ProductVersion;
-                        UIWebVersion = Regex.Replace(UIWebVersion, @"\s+", string.Empty);
-                        UIWebVersion = Regex.Replace(UIWebVersion, @"\n", string.Empty);
-                        if (UIWebVersion != UICurrentVerion)
+                        string LauncherXmlVersion = XmlGetSingleNode("/Launcher/version");
+                        if (LauncherXmlVersion != UICurrentVerion)
                         {
-                            string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, UIWebVersion);
+                            string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, LauncherXmlVersion);
                             DialogResult UIUpdaterChecker = MessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                             if (UIUpdaterChecker == DialogResult.Yes)
                             {
@@ -64,9 +66,8 @@ namespace FreeLauncher
 
                         if (langen_UK)
                         {
-                            string Langen_UKCurrent = Getsha256("./Launcher-langs/en_UK.json");
-                            string Langen_Ukwebhash = client.DownloadString("http://rakion99.github.io/minecraftlauncher/langen_ukhash.txt");
-                            if (Langen_Ukwebhash != Langen_UKCurrent)
+                            string en_UKCurrent = GetSHA384("./Launcher-langs/en_UK.json");
+                            if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != en_UKCurrent)
                             {
                                 DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelangen_uk, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                                 if (DLLUpdaterChecker == DialogResult.Yes)
@@ -105,15 +106,14 @@ namespace FreeLauncher
             configuration.SaveConfiguration();
         }
 
-        private static string Getsha256(string filepath)
+        private static string GetSHA384(string filepath)
         {
-            FileStream filestream;
-            filestream = new FileStream(filepath, FileMode.Open)
+            FileStream filestream = new FileStream(filepath, FileMode.Open)
             {
                 Position = 0
             };
 
-            return BitConverter.ToString(System.Security.Cryptography.SHA256.Create().ComputeHash(filestream)).Replace("-", string.Empty);
+            return BitConverter.ToString(System.Security.Cryptography.SHA384.Create().ComputeHash(filestream)).Replace("-", string.Empty);
         }
     }
 }
