@@ -28,6 +28,24 @@ namespace FreeLauncher
 
         public static string XmlGetSingleNode(string nodelocation) => XmlUpdateFileDoc.DocumentElement.SelectSingleNode(nodelocation).InnerText;
 
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    using (client.OpenRead("http://clients3.google.com/generate_204"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private static void VersionCheck(string[] args)
         {
             Configuration configuration = new Configuration(args);
@@ -43,7 +61,12 @@ namespace FreeLauncher
                 langen_UK = true;
             }
 
-            if (_cfg.CheckforLauncherUpdates)
+            if (!_configuration.Arguments.OfflineMode)
+            {
+                _configuration.Arguments.OfflineMode = !CheckForInternetConnection();
+            }
+
+            if (_cfg.CheckforLauncherUpdates && !_configuration.Arguments.OfflineMode)
             {
                 try
                 {

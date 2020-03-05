@@ -4,10 +4,7 @@ namespace FreeLauncher
 {
     public class ApplicationArguments
     {
-        [Option('d', "working-directory")]
-        public string WorkingDirectory { get; set; }
-
-        [Option("offline-mode")]
+        [Option('o', "offline", Required = false, HelpText = "Forces offline mode")]
         public bool OfflineMode { get; set; }
     }
 }

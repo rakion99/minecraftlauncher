@@ -46,8 +46,8 @@ namespace FreeLauncher
                     }
                     else
                     {
-                        DialogResult Down32bit = MessageBox.Show(downloadjava64, javanotfound, MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                        if (Down32bit == DialogResult.Yes)
+                        DialogResult Down64bit = MessageBox.Show(downloadjava64, javanotfound, MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        if (Down64bit == DialogResult.Yes)
                         {
                             System.Diagnostics.Process.Start("https://drive.google.com/open?id=1HIjyaWql3siapxIqYvkAeT9idyzT47Y9");
                             MessageBox.Show(needjava);

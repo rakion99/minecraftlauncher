@@ -143,7 +143,7 @@ namespace FreeLauncher.Forms
             }
 
             if (!_configuration.Arguments.OfflineMode) {
-                _configuration.Arguments.OfflineMode = !CheckForInternetConnection();
+                _configuration.Arguments.OfflineMode = !Program.CheckForInternetConnection();
             }
 
             if (!Directory.Exists(_configuration.McDirectory)) {
@@ -165,9 +165,12 @@ namespace FreeLauncher.Forms
 </body></html>";
                 Text += " [OFFLINE]";
             }
+            else
+            {
+                newsBrowser.DocumentText = new WebClient().DownloadString("https://raw.githubusercontent.com/rakion99/minecraftlauncher/gh-pages/index.html");//i blame github for blocking/slowing their site when your using IE :/ and no i wont use cefsharp cuz i dont like to have 30mb+ for just a webbrowser
+            }
 
             UpdateVersions();
-
             UpdateProfileList();
             UpdateVersionListView();
             UpdateUserList();
@@ -529,12 +532,13 @@ namespace FreeLauncher.Forms
         private void newsBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             ProcessUrl();
-            if (!_configuration.Arguments.OfflineMode || newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/"))
+            HtmlDocument document = newsBrowser.Document;
+
+            if (!_configuration.Arguments.OfflineMode && document != null && document.Title == "Launcher Update News" )
             {
                 e.Cancel = true;
                 Process.Start(e.Url.ToString());
             }
-            
         }
 
         private void newsBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
@@ -547,7 +551,7 @@ namespace FreeLauncher.Forms
             if (_configuration.Arguments.OfflineMode) {
                 return;
             }
-            if (newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/")) 
+            if (newsBrowser.Url != new Uri("about:blank")) 
             {
                 BackWebButton.Enabled = newsBrowser.CanGoBack;
                 ForwardWebButton.Enabled = newsBrowser.CanGoForward;
@@ -1207,19 +1211,6 @@ namespace FreeLauncher.Forms
                 }
                 SelectedVersion.Text = string.Format(state, _selectedProfile.SelectedVersion ??
                     GetLatestVersion(_selectedProfile));
-            }
-        }
-
-        private static bool CheckForInternetConnection()
-        {
-            try {
-                using (WebClient client = new WebClient()) {
-                    using (client.OpenRead("http://clients3.google.com/generate_204")) {
-                        return true;
-                    }
-                }
-            } catch {
-                return false;
             }
         }
 
