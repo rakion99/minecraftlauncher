@@ -50,7 +50,7 @@ namespace FreeLauncher
                     using (WebClient client = new WebClient())
                     {
                         client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                        XmlUpdateFileDoc.LoadXml(client.DownloadString("https://rakion99.github.io/minecraftlauncher/Updater.xml"));
+                        XmlUpdateFileDoc.LoadXml(client.DownloadString("https://raw.githubusercontent.com/rakion99/minecraftlauncher/gh-pages/Updater.xml"));//for some reason if i use https://rakion99.github.io/minecraftlauncher/Updater.xml takes ages to get the file
                         string UICurrentVerion = Application.ProductVersion;
                         string LauncherXmlVersion = XmlGetSingleNode("/Launcher/version");
                         if (LauncherXmlVersion != UICurrentVerion)

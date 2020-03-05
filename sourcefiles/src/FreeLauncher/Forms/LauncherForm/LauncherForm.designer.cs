@@ -180,7 +180,7 @@ namespace FreeLauncher.Forms
             this.newsBrowser.ScriptErrorsSuppressed = true;
             this.newsBrowser.Size = new System.Drawing.Size(848, 299);
             this.newsBrowser.TabIndex = 0;
-            this.newsBrowser.Url = new System.Uri("https://rakion99.github.io/minecraftlauncher/", System.UriKind.Absolute);
+            this.newsBrowser.Url = new System.Uri("http://rakion99.github.io/minecraftlauncher/", System.UriKind.Absolute);
             this.newsBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.newsBrowser_Navigated);
             this.newsBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.newsBrowser_Navigating);
             // 

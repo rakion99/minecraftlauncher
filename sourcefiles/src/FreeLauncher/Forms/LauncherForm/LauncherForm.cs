@@ -529,7 +529,7 @@ namespace FreeLauncher.Forms
         private void newsBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             ProcessUrl();
-            if (!_configuration.Arguments.OfflineMode)
+            if (!_configuration.Arguments.OfflineMode || newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/"))
             {
                 e.Cancel = true;
                 Process.Start(e.Url.ToString());
@@ -547,7 +547,8 @@ namespace FreeLauncher.Forms
             if (_configuration.Arguments.OfflineMode) {
                 return;
             }
-            if (newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/")) {
+            if (newsBrowser.Url != new Uri("https://rakion99.github.io/minecraftlauncher/")) 
+            {
                 BackWebButton.Enabled = newsBrowser.CanGoBack;
                 ForwardWebButton.Enabled = newsBrowser.CanGoForward;
                 navBar.Text = newsBrowser.Url?.ToString();
