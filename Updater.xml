@@ -8,4 +8,13 @@
             <DownloadUrl>https://raw.githubusercontent.com/rakion99/minecraftlauncher/master/Launcher-langs/en_UK.json</DownloadUrl>
         </en_UK>
     </Languages>
+    <Java>
+        <JavaVersion>"1.8.0_241"</JavaVersion>
+        <Version32bit>
+            <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/jre_32bit.zip</DownloadUrl>
+        </Version32bit>
+        <Version64bit>
+            <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/jre_64bit.zip</DownloadUrl>
+        </Version64bit>
+    </Java>
 </Launcher>
