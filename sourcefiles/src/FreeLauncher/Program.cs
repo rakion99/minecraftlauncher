@@ -25,6 +25,8 @@ namespace FreeLauncher
         private static Configuration _configuration;
         private static bool langen_UK = false;
         public static bool Updaterlangen_uk = false;
+        public static bool DownloadJava32bit = false;
+        public static bool DownloadJava64bit = false;
 
         public static string XmlGetSingleNode(string nodelocation) => XmlUpdateFileDoc.DocumentElement.SelectSingleNode(nodelocation).InnerText;
 
@@ -56,6 +58,18 @@ namespace FreeLauncher
             string Updateinfotext = localization.UpdateInfo;
             string Updatelangen_uk = localization.UpdateLangen_Uk;
 
+            using (WebClient client = new WebClient())
+            {
+                client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                XmlUpdateFileDoc.LoadXml(client.DownloadString("https://raw.githubusercontent.com/rakion99/minecraftlauncher/gh-pages/Updater.xml"));//for some reason if i use https://rakion99.github.io/minecraftlauncher/Updater.xml takes ages to get the file
+            }
+
+            if (System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName == "en" && !File.Exists("./Launcher-langs/en_UK.json"))
+            {
+                Updaterlangen_uk = true;
+                new Forms.UpdateForm.UpdaterForm().ShowDialog();
+            }
+
             if (File.Exists("./Launcher-langs/en_UK.json"))
             {
                 langen_UK = true;
@@ -66,38 +80,95 @@ namespace FreeLauncher
                 _configuration.Arguments.OfflineMode = !CheckForInternetConnection();
             }
 
+            if (!Java.IsJavaDownloaded())
+            {
+                if (Environment.Is64BitOperatingSystem)
+                {
+                    DialogResult WantDownloadJava64 = MessageBox.Show("Press OK to start the download or Cancel to exit", "Local Java Installation not found", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (WantDownloadJava64 == DialogResult.OK)
+                    {
+                        DownloadJava64bit = true;
+                        new Forms.UpdateForm.UpdaterForm().ShowDialog();
+                    }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+                else
+                {
+                    DialogResult WantDownloadJava32 = MessageBox.Show("Press OK to start the download or Cancel to exit", "Local Java Installation not found", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                    if (WantDownloadJava32 == DialogResult.Yes)
+                    {
+                        DownloadJava32bit = true;
+                        new Forms.UpdateForm.UpdaterForm().ShowDialog();
+                    }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
+                }
+            }
+            else
+            {
+                
+                if (Environment.Is64BitOperatingSystem)
+                {
+                    string[] JAVA_VERSION = File.ReadAllLines("./jre_64bit/release")[0].Split('=');
+                    if (JAVA_VERSION[1] != XmlGetSingleNode("/Launcher/Java/JavaVersion"))
+                    {
+                        DialogResult WantUpdateJava64 = MessageBox.Show("Press OK to start the download or Cancel to skip", "Java Update Found",
+                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        if (WantUpdateJava64 == DialogResult.OK)
+                        {
+                            DownloadJava64bit = true;
+                            new Forms.UpdateForm.UpdaterForm().ShowDialog();
+                        }
+                    }
+                }
+                else
+                {
+                    string[] JAVA_VERSION = File.ReadAllLines("./jre_32bit/release")[0].Split('=');
+                    if (JAVA_VERSION[1] != XmlGetSingleNode("/Launcher/Java/JavaVersion"))
+                    {
+                        DialogResult WantUpdateJava32 = MessageBox.Show("Press OK to start the download or Cancel to skip", "Java Update Found",
+                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        if (WantUpdateJava32 == DialogResult.OK)
+                        {
+                            DownloadJava64bit = true;
+                            new Forms.UpdateForm.UpdaterForm().ShowDialog();
+                        }
+                    }
+                }
+            }
+
             if (_cfg.CheckforLauncherUpdates && !_configuration.Arguments.OfflineMode)
             {
                 try
                 {
-                    using (WebClient client = new WebClient())
+                    string UICurrentVerion = Application.ProductVersion;
+                    string LauncherXmlVersion = XmlGetSingleNode("/Launcher/version");
+                    if (LauncherXmlVersion != UICurrentVerion)
                     {
-                        client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                        XmlUpdateFileDoc.LoadXml(client.DownloadString("https://raw.githubusercontent.com/rakion99/minecraftlauncher/gh-pages/Updater.xml"));//for some reason if i use https://rakion99.github.io/minecraftlauncher/Updater.xml takes ages to get the file
-                        string UICurrentVerion = Application.ProductVersion;
-                        string LauncherXmlVersion = XmlGetSingleNode("/Launcher/version");
-                        if (LauncherXmlVersion != UICurrentVerion)
+                        string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, LauncherXmlVersion);
+                        DialogResult UIUpdaterChecker = MessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        if (UIUpdaterChecker == DialogResult.Yes)
                         {
-                            string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, LauncherXmlVersion);
-                            DialogResult UIUpdaterChecker = MessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            if (UIUpdaterChecker == DialogResult.Yes)
-                            {
-                                UpdateLauncher = true;
-                                new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                            }
+                            UpdateLauncher = true;
+                            new Forms.UpdateForm.UpdaterForm().ShowDialog();
                         }
+                    }
 
-                        if (langen_UK)
+                    if (langen_UK)
+                    {
+                        string en_UKCurrent = GetSHA384("./Launcher-langs/en_UK.json");
+                        if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != en_UKCurrent)
                         {
-                            string en_UKCurrent = GetSHA384("./Launcher-langs/en_UK.json");
-                            if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != en_UKCurrent)
+                            DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelangen_uk, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                            if (DLLUpdaterChecker == DialogResult.Yes)
                             {
-                                DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelangen_uk, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                                if (DLLUpdaterChecker == DialogResult.Yes)
-                                {
-                                    Updaterlangen_uk = true;
-                                    new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                                }
+                                Updaterlangen_uk = true;
+                                new Forms.UpdateForm.UpdaterForm().ShowDialog();
                             }
                         }
                     }

@@ -43,7 +43,7 @@
             this.DownloadProgressbar.Location = new System.Drawing.Point(12, 98);
             this.DownloadProgressbar.Name = "DownloadProgressbar";
             this.DownloadProgressbar.ShowProgressIndicators = true;
-            this.DownloadProgressbar.Size = new System.Drawing.Size(375, 66);
+            this.DownloadProgressbar.Size = new System.Drawing.Size(451, 66);
             this.DownloadProgressbar.TabIndex = 0;
             this.DownloadProgressbar.Text = "0 %";
             this.DownloadProgressbar.ThemeName = "VisualStudio2012Dark";
@@ -52,7 +52,7 @@
             // 
             this.DownloadingLabel.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DownloadingLabel.ForeColor = System.Drawing.Color.White;
-            this.DownloadingLabel.Location = new System.Drawing.Point(48, 37);
+            this.DownloadingLabel.Location = new System.Drawing.Point(12, 32);
             this.DownloadingLabel.Name = "DownloadingLabel";
             this.DownloadingLabel.Size = new System.Drawing.Size(294, 30);
             this.DownloadingLabel.TabIndex = 1;
@@ -64,7 +64,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(399, 183);
+            this.ClientSize = new System.Drawing.Size(475, 183);
             this.Controls.Add(this.DownloadingLabel);
             this.Controls.Add(this.DownloadProgressbar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
