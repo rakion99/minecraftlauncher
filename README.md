@@ -13,13 +13,12 @@
 
  ![](https://i.imgur.com/hB1Mkin.png)
  
- ![](https://i.imgur.com/H3neqW9.png)
+ ![](https://i.imgur.com/5riBwgo.png)
  
 # Requirements:
 
-* At least .Net Framework 4.7.2
-* Java
-* Around 300mb of Disk space(Launcher only need 5Mb)
+* At least .Net Framework 4.7.2/4.8
+* Around 200-300mb of Disk space(Launcher only need 6.3Mb)
 
 **See the wiki for how to use and more: [Wiki](https://github.com/rakion99/minecraftlauncher/wiki)**
 
