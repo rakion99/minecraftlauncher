@@ -1,1 +1,1 @@
-https://github.com/rakion99/minecraftlauncher/releases/download/1.0.4.23644/Launcher.exe
+https://github.com/rakion99/minecraftlauncher/releases/download/1.0.5.30383/Launcher.exe
