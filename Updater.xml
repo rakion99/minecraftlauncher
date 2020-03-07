@@ -4,11 +4,11 @@
     <DownloadUrl>https://github.com/rakion99/minecraftlauncher/releases/download/1.0.4.23644/Launcher.exe</DownloadUrl>
     <Languages>
         <en_UK>
-            <SHA384>180CB0083F55932862A790E6CE33EFC82EFAE6C82867D3F7D09361B78E623FB6B52092CCBC9675C594CACB7EE372CEEE</SHA384>
+            <SHA384>92D992CD7CEFC9E7186264C9EC6182B6A3CD2F6D4FA75AD8F1B28CF8EEFFF50EA45230AD9417061A2A310D36A999B3D1</SHA384>
             <DownloadUrl>https://raw.githubusercontent.com/rakion99/minecraftlauncher/master/Launcher-langs/en_UK.json</DownloadUrl>
         </en_UK>
         <es_MX>
-            <SHA384>0A2CA933CED0CBD5397EA95DD95D6CCC52E64D991BC365B9EA835FAA6AE19DBACCF07F5173C0D3DE9813B99E09DD9DDE</SHA384>
+            <SHA384>4FC3096CC7B8F01CE2AB2E6E03322070AAC05C2940C73523F07151502A1C572DD6E81757699BF170D5F334020FDEAD77</SHA384>
             <DownloadUrl>https://raw.githubusercontent.com/rakion99/minecraftlauncher/master/Launcher-langs/es_MX.json</DownloadUrl>
         </es_MX>
     </Languages>
