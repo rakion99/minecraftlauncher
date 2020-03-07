@@ -173,8 +173,8 @@ namespace FreeLauncher
 
                     if (langen_UK)
                     {
-                        string en_UKCurrent = GetSHA384("./Launcher-langs/en_UK.json");
-                        if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != en_UKCurrent)
+                        string localen_UKSHA384 = GetSHA384("./Launcher-langs/en_UK.json");
+                        if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != localen_UKSHA384)
                         {
                             string Updatelangen_UK = string.Format(Updatelangtext, "en_UK");
                             DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelangen_UK, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
@@ -187,8 +187,8 @@ namespace FreeLauncher
                     }
                     if (langes_MX)
                     {
-                        string en_UKCurrent = GetSHA384("./Launcher-langs/es_MX.json");
-                        if (XmlGetSingleNode("/Launcher/Languages/es_MX/SHA384") != en_UKCurrent)
+                        string locales_MXSHA384 = GetSHA384("./Launcher-langs/es_MX.json");
+                        if (XmlGetSingleNode("/Launcher/Languages/es_MX/SHA384") != locales_MXSHA384)
                         {
                             string Updatelanges_MX = string.Format(Updatelangtext, "es_MX");
                             DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelanges_MX, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);

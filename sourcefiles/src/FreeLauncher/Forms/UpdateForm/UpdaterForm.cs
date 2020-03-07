@@ -180,7 +180,7 @@ namespace FreeLauncher.Forms.UpdateForm
                                 }
                             }
                         }
-                        Directory.Delete(@".\tmp");
+                        Directory.Delete(@".\tmp", true);
                     }
                     catch (Exception ex)
                     {
