@@ -111,11 +111,21 @@ namespace FreeLauncher.Forms.UpdateForm
                             File.Delete(@".\Launcher-langs\en_UK.json");
                             File.Move(@".\tmp\Launcher-langs\en_UK.json", @".\Launcher-langs\en_UK.json");
                             Directory.Delete(@".\tmp", true);
+                            if (Program.langen_uknotfound)
+                            {
+                                Process.Start(Application.ExecutablePath);
+                                Environment.Exit(0);
+                            }
                         }
                         else
                         {
-                            Directory.Move(@".\tmp\Launcher-langs", @".\");
+                            Directory.Move(@".\tmp\Launcher-langs", @".\Launcher-langs");
                             Directory.Delete(@".\tmp");
+                            if (Program.langen_uknotfound)
+                            {
+                                Process.Start(Application.ExecutablePath);
+                                Environment.Exit(0);
+                            }
                         }
                     }
                     catch (Exception ex)

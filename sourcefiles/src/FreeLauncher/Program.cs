@@ -27,6 +27,7 @@ namespace FreeLauncher
         public static bool Updaterlangen_uk = false;
         public static bool DownloadJava32bit = false;
         public static bool DownloadJava64bit = false;
+        public static bool langen_uknotfound = false;
 
         public static string XmlGetSingleNode(string nodelocation) => XmlUpdateFileDoc.DocumentElement.SelectSingleNode(nodelocation).InnerText;
 
@@ -64,9 +65,11 @@ namespace FreeLauncher
                 XmlUpdateFileDoc.LoadXml(client.DownloadString("https://raw.githubusercontent.com/rakion99/minecraftlauncher/gh-pages/Updater.xml"));//for some reason if i use https://rakion99.github.io/minecraftlauncher/Updater.xml takes ages to get the file
             }
 
-            if (System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName == "en" && !File.Exists("./Launcher-langs/en_UK.json"))
+            if (System.Globalization.CultureInfo.InstalledUICulture.TwoLetterISOLanguageName == "en" && !File.Exists("./Launcher-langs/en_UK.json")
+                || _configuration.ApplicationConfiguration.SelectedLanguage == "en_UK" && !File.Exists("./Launcher-langs/en_UK.json"))
             {
                 Updaterlangen_uk = true;
+                langen_uknotfound = true;
                 new Forms.UpdateForm.UpdaterForm().ShowDialog();
             }
 
@@ -74,6 +77,7 @@ namespace FreeLauncher
             {
                 langen_UK = true;
             }
+            
 
             if (!_configuration.Arguments.OfflineMode)
             {
