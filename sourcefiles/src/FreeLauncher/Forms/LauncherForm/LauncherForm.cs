@@ -143,7 +143,7 @@ namespace FreeLauncher.Forms
             }
 
             if (!_configuration.Arguments.OfflineMode) {
-                _configuration.Arguments.OfflineMode = !Program.CheckForInternetConnection();
+                _configuration.Arguments.OfflineMode = !Program.CheckForInternetConnection;
             }
 
             if (!Directory.Exists(_configuration.McDirectory)) {
@@ -154,15 +154,16 @@ namespace FreeLauncher.Forms
             }
 
             if (_configuration.Arguments.OfflineMode) {
-                newsBrowser.DocumentText = $@"<html><body>
-<h1>{offlinemode}</h1>
-<hr />
-{cantconnectinternet}
-<br />
-{checkinternet}
-<hr />
-<i>{ProductName} {ProductVersion}</i>
-</body></html>";
+                newsBrowser.DocumentText = 
+                    $@"<html><body>
+                    <h1>{offlinemode}</h1>
+                    <hr />
+                    {cantconnectinternet}
+                    <br />
+                    {checkinternet}
+                    <hr />
+                    <i>{ProductName} {ProductVersion}</i>
+                    </body></html>";
                 Text += " [OFFLINE]";
             }
             else
@@ -551,25 +552,6 @@ namespace FreeLauncher.Forms
             if (_configuration.Arguments.OfflineMode) {
                 return;
             }
-            if (newsBrowser.Url != new Uri("about:blank")) 
-            {
-                BackWebButton.Enabled = newsBrowser.CanGoBack;
-                ForwardWebButton.Enabled = newsBrowser.CanGoForward;
-                navBar.Text = newsBrowser.Url?.ToString();
-                navBar.Visible = true;
-            } else {
-                navBar.Visible = false;
-            }
-        }
-
-        private void backWebButton_Click(object sender, EventArgs e)
-        {
-            newsBrowser.GoBack();
-        }
-
-        private void forwardWebButton_Click(object sender, EventArgs e)
-        {
-            newsBrowser.GoForward();
         }
 
         #endregion
@@ -1107,7 +1089,6 @@ namespace FreeLauncher.Forms
             EditVersions.Text = localization.ManageVersionsTabText;
             EditProfiles.Text = localization.ManageProfilesTabText;
             AboutPage.Text = localization.AboutTabText;
-            AboutPageViewPage.Text = localization.AboutTabText;
 
             Languagelabel.Text = localization.LangLabel;
 
@@ -1123,9 +1104,7 @@ namespace FreeLauncher.Forms
             versionsListView.Columns[4].HeaderText = localization.AssetsIndexHeader;
             versionsListView.Columns[5].HeaderText = localization.DependencyHeader;
 
-            GratitudesLabel.Text = localization.GratitudesText;
             GratitudesDescLabel.Text = localization.GratitudesDescription;
-            PartnersLabel.Text = localization.PartnersText;
             MCofflineDescLabel.Text = localization.MCofflineDescription;
             CopyrightInfoLabel.Text = localization.CopyrightInfo;
 

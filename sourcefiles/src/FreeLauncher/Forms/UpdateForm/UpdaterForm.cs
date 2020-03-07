@@ -23,6 +23,10 @@ namespace FreeLauncher.Forms.UpdateForm
         {
             try
             {
+                if (Directory.Exists("./tmp"))
+                {
+                    Directory.Delete("./tmp", true);
+                }
                 if (Program.UpdateLauncher)
                 {
                     using (WebClient WebC = new WebClient())
@@ -35,16 +39,16 @@ namespace FreeLauncher.Forms.UpdateForm
                         File.WriteAllBytes(@".\tmp\Launcher.exe", data);
                     }
                 }
-                else if (Program.Updaterlangen_uk)
+                else if (Program.UpdateLang != null)
                 {
                     using (WebClient WebC2 = new WebClient())
                     {
-                        DownloadingLabel.Text = "Downloading en_UK Language Update";
+                        DownloadingLabel.Text = $"Downloading {Program.UpdateLang} Language Update";
                         Directory.CreateDirectory(@"tmp\Launcher-langs");
                         WebC2.DownloadProgressChanged += WebC_DownloadProgressChanged;
                         WebC2.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadlangCompleted);
-                        var data = await WebC2.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode("/Launcher/Languages/en_UK/DownloadUrl")));
-                        File.WriteAllBytes(@".\tmp\Launcher-langs\en_UK.json", data);
+                        var data = await WebC2.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode($"/Launcher/Languages/{Program.UpdateLang}/DownloadUrl")));
+                        File.WriteAllBytes($@".\tmp\Launcher-langs\{Program.UpdateLang}.json", data);
                     }
                 }
                 else if (Program.DownloadJava32bit)
@@ -108,10 +112,10 @@ namespace FreeLauncher.Forms.UpdateForm
                         if (Directory.Exists(@".\Launcher-langs"))
                         {
                             Thread.Sleep(100);
-                            File.Delete(@".\Launcher-langs\en_UK.json");
-                            File.Move(@".\tmp\Launcher-langs\en_UK.json", @".\Launcher-langs\en_UK.json");
+                            File.Delete($@".\Launcher-langs\{Program.UpdateLang}.json");
+                            File.Move($@".\tmp\Launcher-langs\{Program.UpdateLang}.json", $@".\Launcher-langs\{Program.UpdateLang}.json");
                             Directory.Delete(@".\tmp", true);
-                            if (Program.langen_uknotfound)
+                            if (Program.Langnotfound)
                             {
                                 Process.Start(Application.ExecutablePath);
                                 Environment.Exit(0);
@@ -121,16 +125,17 @@ namespace FreeLauncher.Forms.UpdateForm
                         {
                             Directory.Move(@".\tmp\Launcher-langs", @".\Launcher-langs");
                             Directory.Delete(@".\tmp");
-                            if (Program.langen_uknotfound)
+                            if (Program.Langnotfound)
                             {
                                 Process.Start(Application.ExecutablePath);
                                 Environment.Exit(0);
                             }
                         }
+                        Program.UpdateLang = null;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", "Updater Fatal Exception while trying to update lang", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", $"Updater Fatal Exception while trying to update lang {Program.UpdateLang}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Invoke((MethodInvoker)delegate
                     {
@@ -153,6 +158,7 @@ namespace FreeLauncher.Forms.UpdateForm
                         if (Directory.Exists(@".\jre_32bit"))
                         {
                             Thread.Sleep(100);
+                            new FileInfo(@".\jre_32bit\bin\client\classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
                             Directory.Delete(@".\jre_32bit", true);
                         }
                         using (ZipFile zip = ZipFile.Read(@".\tmp\jre_32bit.zip"))
@@ -201,6 +207,7 @@ namespace FreeLauncher.Forms.UpdateForm
                         if (Directory.Exists(@".\jre_64bit"))
                         {
                             Thread.Sleep(100);
+                            new FileInfo(@".\jre_64bit\bin\server\classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
                             Directory.Delete(@".\jre_64bit", true);
                         }
                         using (ZipFile zip = ZipFile.Read(@".\tmp\jre_64bit.zip"))

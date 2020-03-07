@@ -33,25 +33,22 @@ namespace FreeLauncher.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn7 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn8 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn9 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn10 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn12 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn13 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn14 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn15 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn16 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             this.vs12theme = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
             this.News = new Telerik.WinControls.UI.RadPageViewPage();
             this.newsBrowser = new System.Windows.Forms.WebBrowser();
-            this.navBar = new Telerik.WinControls.UI.RadPanel();
-            this.BackWebButton = new Telerik.WinControls.UI.RadButton();
-            this.ForwardWebButton = new Telerik.WinControls.UI.RadButton();
             this.ConsolePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.logBox = new System.Windows.Forms.RichTextBox();
             this.ConsoleOptionsPanel = new Telerik.WinControls.UI.RadPanel();
@@ -62,9 +59,6 @@ namespace FreeLauncher.Forms
             this.EditProfiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.profilesListView = new Telerik.WinControls.UI.RadListView();
             this.AboutPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.AboutPageView = new Telerik.WinControls.UI.RadPageView();
-            this.AboutPageViewPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radScrollablePanel2 = new Telerik.WinControls.UI.RadScrollablePanel();
             this.label1 = new System.Windows.Forms.Label();
             this.CopyrightInfoLabel = new System.Windows.Forms.Label();
             this.LoggerGroupBox = new Telerik.WinControls.UI.RadGroupBox();
@@ -79,10 +73,8 @@ namespace FreeLauncher.Forms
             this.mcOfflineURL = new System.Windows.Forms.Label();
             this.MCofflineDescLabel = new System.Windows.Forms.Label();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.PartnersLabel = new Telerik.WinControls.UI.RadLabel();
             this.ruMcURL = new System.Windows.Forms.Label();
             this.GratitudesDescLabel = new System.Windows.Forms.Label();
-            this.GratitudesLabel = new Telerik.WinControls.UI.RadLabel();
             this.StatusBar = new Telerik.WinControls.UI.RadProgressBar();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.DeleteProfileButton = new Telerik.WinControls.UI.RadButton();
@@ -97,10 +89,6 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.News.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.navBar)).BeginInit();
-            this.navBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BackWebButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ForwardWebButton)).BeginInit();
             this.ConsolePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsoleOptionsPanel)).BeginInit();
             this.ConsoleOptionsPanel.SuspendLayout();
@@ -111,12 +99,6 @@ namespace FreeLauncher.Forms
             this.EditProfiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilesListView)).BeginInit();
             this.AboutPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AboutPageView)).BeginInit();
-            this.AboutPageView.SuspendLayout();
-            this.AboutPageViewPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).BeginInit();
-            this.radScrollablePanel2.PanelContainer.SuspendLayout();
-            this.radScrollablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoggerGroupBox)).BeginInit();
             this.LoggerGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CloseGameOutput)).BeginInit();
@@ -129,8 +111,6 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartnersLabel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GratitudesLabel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -164,7 +144,6 @@ namespace FreeLauncher.Forms
             // News
             // 
             this.News.Controls.Add(this.newsBrowser);
-            this.News.Controls.Add(this.navBar);
             this.News.ItemSize = new System.Drawing.SizeF(40F, 24F);
             this.News.Location = new System.Drawing.Point(5, 30);
             this.News.Name = "News";
@@ -178,45 +157,11 @@ namespace FreeLauncher.Forms
             this.newsBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.newsBrowser.Name = "newsBrowser";
             this.newsBrowser.ScriptErrorsSuppressed = true;
-            this.newsBrowser.Size = new System.Drawing.Size(848, 299);
+            this.newsBrowser.Size = new System.Drawing.Size(848, 328);
             this.newsBrowser.TabIndex = 0;
             this.newsBrowser.Url = new System.Uri("", System.UriKind.Relative);
             this.newsBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.newsBrowser_Navigated);
             this.newsBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.newsBrowser_Navigating);
-            // 
-            // navBar
-            // 
-            this.navBar.Controls.Add(this.BackWebButton);
-            this.navBar.Controls.Add(this.ForwardWebButton);
-            this.navBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.navBar.Location = new System.Drawing.Point(0, 299);
-            this.navBar.Name = "navBar";
-            this.navBar.Size = new System.Drawing.Size(848, 29);
-            this.navBar.TabIndex = 1;
-            this.navBar.ThemeName = "VisualStudio2012Dark";
-            this.navBar.Visible = false;
-            // 
-            // BackWebButton
-            // 
-            this.BackWebButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BackWebButton.Location = new System.Drawing.Point(715, 3);
-            this.BackWebButton.Name = "BackWebButton";
-            this.BackWebButton.Size = new System.Drawing.Size(64, 23);
-            this.BackWebButton.TabIndex = 1;
-            this.BackWebButton.Text = "<";
-            this.BackWebButton.ThemeName = "VisualStudio2012Dark";
-            this.BackWebButton.Click += new System.EventHandler(this.backWebButton_Click);
-            // 
-            // ForwardWebButton
-            // 
-            this.ForwardWebButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ForwardWebButton.Location = new System.Drawing.Point(779, 3);
-            this.ForwardWebButton.Name = "ForwardWebButton";
-            this.ForwardWebButton.Size = new System.Drawing.Size(64, 23);
-            this.ForwardWebButton.TabIndex = 0;
-            this.ForwardWebButton.Text = ">";
-            this.ForwardWebButton.ThemeName = "VisualStudio2012Dark";
-            this.ForwardWebButton.Click += new System.EventHandler(this.forwardWebButton_Click);
             // 
             // ConsolePage
             // 
@@ -290,25 +235,25 @@ namespace FreeLauncher.Forms
             this.versionsListView.AllowRemove = false;
             this.versionsListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.versionsListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn1.HeaderText = "Version";
-            listViewDetailColumn1.Width = 150F;
-            listViewDetailColumn2.HeaderText = "Type";
-            listViewDetailColumn2.Width = 100F;
-            listViewDetailColumn3.HeaderText = "Launch date";
-            listViewDetailColumn3.Width = 150F;
-            listViewDetailColumn4.HeaderText = "Last update";
-            listViewDetailColumn4.Width = 150F;
-            listViewDetailColumn5.HeaderText = "Resource index";
-            listViewDetailColumn5.Width = 120F;
-            listViewDetailColumn6.HeaderText = "inherits";
-            listViewDetailColumn6.Width = 100F;
+            listViewDetailColumn11.HeaderText = "Version";
+            listViewDetailColumn11.Width = 150F;
+            listViewDetailColumn12.HeaderText = "Type";
+            listViewDetailColumn12.Width = 100F;
+            listViewDetailColumn13.HeaderText = "Launch date";
+            listViewDetailColumn13.Width = 150F;
+            listViewDetailColumn14.HeaderText = "Last update";
+            listViewDetailColumn14.Width = 150F;
+            listViewDetailColumn15.HeaderText = "Resource index";
+            listViewDetailColumn15.Width = 120F;
+            listViewDetailColumn16.HeaderText = "inherits";
+            listViewDetailColumn16.Width = 100F;
             this.versionsListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn1,
-            listViewDetailColumn2,
-            listViewDetailColumn3,
-            listViewDetailColumn4,
-            listViewDetailColumn5,
-            listViewDetailColumn6});
+            listViewDetailColumn11,
+            listViewDetailColumn12,
+            listViewDetailColumn13,
+            listViewDetailColumn14,
+            listViewDetailColumn15,
+            listViewDetailColumn16});
             this.versionsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.versionsListView.EnableColumnSort = true;
             this.versionsListView.EnableFiltering = true;
@@ -343,18 +288,18 @@ namespace FreeLauncher.Forms
             this.profilesListView.AllowRemove = false;
             this.profilesListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.profilesListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn7.HeaderText = "Perfil";
-            listViewDetailColumn7.Visible = false;
-            listViewDetailColumn8.HeaderText = "Nombre Perfil";
-            listViewDetailColumn9.HeaderText = "Version";
-            listViewDetailColumn10.HeaderText = "Tipo de Version";
-            listViewDetailColumn11.HeaderText = "Visibilidad del Launcher";
+            listViewDetailColumn1.HeaderText = "Perfil";
+            listViewDetailColumn1.Visible = false;
+            listViewDetailColumn2.HeaderText = "Nombre Perfil";
+            listViewDetailColumn3.HeaderText = "Version";
+            listViewDetailColumn4.HeaderText = "Tipo de Version";
+            listViewDetailColumn5.HeaderText = "Visibilidad del Launcher";
             this.profilesListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn7,
-            listViewDetailColumn8,
-            listViewDetailColumn9,
-            listViewDetailColumn10,
-            listViewDetailColumn11});
+            listViewDetailColumn1,
+            listViewDetailColumn2,
+            listViewDetailColumn3,
+            listViewDetailColumn4,
+            listViewDetailColumn5});
             this.profilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profilesListView.EnableColumnSort = true;
             this.profilesListView.EnableFiltering = true;
@@ -373,60 +318,21 @@ namespace FreeLauncher.Forms
             // 
             // AboutPage
             // 
-            this.AboutPage.Controls.Add(this.AboutPageView);
+            this.AboutPage.Controls.Add(this.label1);
+            this.AboutPage.Controls.Add(this.LoggerGroupBox);
+            this.AboutPage.Controls.Add(this.CopyrightInfoLabel);
+            this.AboutPage.Controls.Add(this.MainGroupBox);
+            this.AboutPage.Controls.Add(this.radLabel1);
+            this.AboutPage.Controls.Add(this.AboutVersion);
+            this.AboutPage.Controls.Add(this.GratitudesDescLabel);
+            this.AboutPage.Controls.Add(this.ruMcURL);
+            this.AboutPage.Controls.Add(this.MCofflineDescLabel);
+            this.AboutPage.Controls.Add(this.mcOfflineURL);
             this.AboutPage.ItemSize = new System.Drawing.SizeF(43F, 24F);
             this.AboutPage.Location = new System.Drawing.Point(5, 30);
             this.AboutPage.Name = "AboutPage";
             this.AboutPage.Size = new System.Drawing.Size(848, 328);
             this.AboutPage.Text = "About";
-            // 
-            // AboutPageView
-            // 
-            this.AboutPageView.Controls.Add(this.AboutPageViewPage);
-            this.AboutPageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AboutPageView.Location = new System.Drawing.Point(0, 0);
-            this.AboutPageView.Name = "AboutPageView";
-            this.AboutPageView.SelectedPage = this.AboutPageViewPage;
-            this.AboutPageView.Size = new System.Drawing.Size(848, 328);
-            this.AboutPageView.TabIndex = 9;
-            this.AboutPageView.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.AboutPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.AboutPageView.GetChildAt(0))).ItemAlignment = Telerik.WinControls.UI.StripViewItemAlignment.Center;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.AboutPageView.GetChildAt(0))).ItemFitMode = Telerik.WinControls.UI.StripViewItemFitMode.Fill;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.AboutPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Bottom;
-            // 
-            // AboutPageViewPage
-            // 
-            this.AboutPageViewPage.Controls.Add(this.radScrollablePanel2);
-            this.AboutPageViewPage.Location = new System.Drawing.Point(5, 5);
-            this.AboutPageViewPage.Name = "AboutPageViewPage";
-            this.AboutPageViewPage.Size = new System.Drawing.Size(838, 293);
-            this.AboutPageViewPage.Text = "About";
-            // 
-            // radScrollablePanel2
-            // 
-            this.radScrollablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScrollablePanel2.Location = new System.Drawing.Point(0, 0);
-            this.radScrollablePanel2.Name = "radScrollablePanel2";
-            // 
-            // radScrollablePanel2.PanelContainer
-            // 
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.label1);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.CopyrightInfoLabel);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.LoggerGroupBox);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.MainGroupBox);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.AboutVersion);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.mcOfflineURL);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.MCofflineDescLabel);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.radLabel1);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.PartnersLabel);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.ruMcURL);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.GratitudesDescLabel);
-            this.radScrollablePanel2.PanelContainer.Controls.Add(this.GratitudesLabel);
-            this.radScrollablePanel2.PanelContainer.Size = new System.Drawing.Size(836, 291);
-            this.radScrollablePanel2.Size = new System.Drawing.Size(838, 293);
-            this.radScrollablePanel2.TabIndex = 9;
-            this.radScrollablePanel2.ThemeName = "VisualStudio2012Dark";
             // 
             // label1
             // 
@@ -436,7 +342,7 @@ namespace FreeLauncher.Forms
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label1.ForeColor = System.Drawing.Color.Gray;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(611, 265);
+            this.label1.Location = new System.Drawing.Point(663, 313);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 15);
             this.label1.TabIndex = 15;
@@ -449,7 +355,7 @@ namespace FreeLauncher.Forms
             this.CopyrightInfoLabel.BackColor = System.Drawing.Color.Transparent;
             this.CopyrightInfoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CopyrightInfoLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CopyrightInfoLabel.Location = new System.Drawing.Point(2, 254);
+            this.CopyrightInfoLabel.Location = new System.Drawing.Point(7, 283);
             this.CopyrightInfoLabel.Name = "CopyrightInfoLabel";
             this.CopyrightInfoLabel.Size = new System.Drawing.Size(165, 17);
             this.CopyrightInfoLabel.TabIndex = 14;
@@ -463,7 +369,7 @@ namespace FreeLauncher.Forms
             this.LoggerGroupBox.Controls.Add(this.CloseGameOutput);
             this.LoggerGroupBox.Controls.Add(this.EnableMinecraftLogging);
             this.LoggerGroupBox.HeaderText = "Logging";
-            this.LoggerGroupBox.Location = new System.Drawing.Point(469, 141);
+            this.LoggerGroupBox.Location = new System.Drawing.Point(484, 179);
             this.LoggerGroupBox.Name = "LoggerGroupBox";
             this.LoggerGroupBox.Size = new System.Drawing.Size(357, 121);
             this.LoggerGroupBox.TabIndex = 13;
@@ -501,7 +407,7 @@ namespace FreeLauncher.Forms
             this.MainGroupBox.Controls.Add(this.LangDropDownList);
             this.MainGroupBox.Controls.Add(this.DownloadAssetsBox);
             this.MainGroupBox.HeaderText = "Main";
-            this.MainGroupBox.Location = new System.Drawing.Point(469, 14);
+            this.MainGroupBox.Location = new System.Drawing.Point(484, 32);
             this.MainGroupBox.Name = "MainGroupBox";
             this.MainGroupBox.Size = new System.Drawing.Size(357, 121);
             this.MainGroupBox.TabIndex = 12;
@@ -555,7 +461,7 @@ namespace FreeLauncher.Forms
             // 
             this.AboutVersion.BackColor = System.Drawing.Color.Transparent;
             this.AboutVersion.ForeColor = System.Drawing.Color.DimGray;
-            this.AboutVersion.Location = new System.Drawing.Point(122, 34);
+            this.AboutVersion.Location = new System.Drawing.Point(132, 40);
             this.AboutVersion.MinimumSize = new System.Drawing.Size(58, 18);
             this.AboutVersion.Name = "AboutVersion";
             // 
@@ -578,7 +484,7 @@ namespace FreeLauncher.Forms
             this.mcOfflineURL.Cursor = System.Windows.Forms.Cursors.Hand;
             this.mcOfflineURL.ForeColor = System.Drawing.Color.Gray;
             this.mcOfflineURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.mcOfflineURL.Location = new System.Drawing.Point(14, 201);
+            this.mcOfflineURL.Location = new System.Drawing.Point(7, 229);
             this.mcOfflineURL.Name = "mcOfflineURL";
             this.mcOfflineURL.Size = new System.Drawing.Size(157, 13);
             this.mcOfflineURL.TabIndex = 11;
@@ -591,7 +497,7 @@ namespace FreeLauncher.Forms
             this.MCofflineDescLabel.BackColor = System.Drawing.Color.Transparent;
             this.MCofflineDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.MCofflineDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MCofflineDescLabel.Location = new System.Drawing.Point(14, 184);
+            this.MCofflineDescLabel.Location = new System.Drawing.Point(7, 201);
             this.MCofflineDescLabel.Name = "MCofflineDescLabel";
             this.MCofflineDescLabel.Size = new System.Drawing.Size(64, 17);
             this.MCofflineDescLabel.TabIndex = 9;
@@ -602,7 +508,7 @@ namespace FreeLauncher.Forms
             this.radLabel1.BackColor = System.Drawing.Color.Transparent;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 20.25F);
             this.radLabel1.ForeColor = System.Drawing.Color.White;
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Location = new System.Drawing.Point(3, 17);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(123, 41);
             this.radLabel1.TabIndex = 0;
@@ -611,20 +517,6 @@ namespace FreeLauncher.Forms
             ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel1.GetChildAt(0))).Text = "Launcher";
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radLabel1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
             // 
-            // PartnersLabel
-            // 
-            this.PartnersLabel.BackColor = System.Drawing.Color.Transparent;
-            this.PartnersLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F);
-            this.PartnersLabel.ForeColor = System.Drawing.Color.Transparent;
-            this.PartnersLabel.Location = new System.Drawing.Point(3, 147);
-            this.PartnersLabel.Name = "PartnersLabel";
-            this.PartnersLabel.Size = new System.Drawing.Size(140, 41);
-            this.PartnersLabel.TabIndex = 10;
-            this.PartnersLabel.Text = "Партнёры";
-            this.PartnersLabel.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.PartnersLabel.GetChildAt(0))).Text = "Партнёры";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.PartnersLabel.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
-            // 
             // ruMcURL
             // 
             this.ruMcURL.AutoSize = true;
@@ -632,7 +524,7 @@ namespace FreeLauncher.Forms
             this.ruMcURL.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ruMcURL.ForeColor = System.Drawing.Color.Gray;
             this.ruMcURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ruMcURL.Location = new System.Drawing.Point(14, 135);
+            this.ruMcURL.Location = new System.Drawing.Point(11, 127);
             this.ruMcURL.Name = "ruMcURL";
             this.ruMcURL.Size = new System.Drawing.Size(153, 13);
             this.ruMcURL.TabIndex = 8;
@@ -645,25 +537,11 @@ namespace FreeLauncher.Forms
             this.GratitudesDescLabel.BackColor = System.Drawing.Color.Transparent;
             this.GratitudesDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.GratitudesDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.GratitudesDescLabel.Location = new System.Drawing.Point(14, 118);
+            this.GratitudesDescLabel.Location = new System.Drawing.Point(11, 105);
             this.GratitudesDescLabel.Name = "GratitudesDescLabel";
             this.GratitudesDescLabel.Size = new System.Drawing.Size(58, 17);
             this.GratitudesDescLabel.TabIndex = 6;
             this.GratitudesDescLabel.Text = "rakion99";
-            // 
-            // GratitudesLabel
-            // 
-            this.GratitudesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.GratitudesLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F);
-            this.GratitudesLabel.ForeColor = System.Drawing.Color.Transparent;
-            this.GratitudesLabel.Location = new System.Drawing.Point(3, 81);
-            this.GratitudesLabel.Name = "GratitudesLabel";
-            this.GratitudesLabel.Size = new System.Drawing.Size(202, 41);
-            this.GratitudesLabel.TabIndex = 7;
-            this.GratitudesLabel.Text = "Благодарности";
-            this.GratitudesLabel.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.GratitudesLabel.GetChildAt(0))).Text = "Благодарности";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.GratitudesLabel.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
             // 
             // StatusBar
             // 
@@ -826,10 +704,6 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
             this.News.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.navBar)).EndInit();
-            this.navBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BackWebButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ForwardWebButton)).EndInit();
             this.ConsolePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ConsoleOptionsPanel)).EndInit();
             this.ConsoleOptionsPanel.ResumeLayout(false);
@@ -840,13 +714,7 @@ namespace FreeLauncher.Forms
             this.EditProfiles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.profilesListView)).EndInit();
             this.AboutPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AboutPageView)).EndInit();
-            this.AboutPageView.ResumeLayout(false);
-            this.AboutPageViewPage.ResumeLayout(false);
-            this.radScrollablePanel2.PanelContainer.ResumeLayout(false);
-            this.radScrollablePanel2.PanelContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel2)).EndInit();
-            this.radScrollablePanel2.ResumeLayout(false);
+            this.AboutPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoggerGroupBox)).EndInit();
             this.LoggerGroupBox.ResumeLayout(false);
             this.LoggerGroupBox.PerformLayout();
@@ -861,8 +729,6 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartnersLabel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GratitudesLabel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
@@ -886,25 +752,17 @@ namespace FreeLauncher.Forms
         private RadPageView mainPageView;
         private RadPageViewPage News;
         private WebBrowser newsBrowser;
-        private RadPanel navBar;
-        private RadButton BackWebButton;
-        private RadButton ForwardWebButton;
         private RadPageViewPage ConsolePage;
         public RichTextBox logBox;
         private RadPageViewPage EditVersions;
         private RadListView versionsListView;
         private RadPageViewPage AboutPage;
-        private RadPageView AboutPageView;
-        private RadPageViewPage AboutPageViewPage;
-        private RadScrollablePanel radScrollablePanel2;
         private Label mcOfflineURL;
         private Label MCofflineDescLabel;
-        private RadLabel PartnersLabel;
         private RadLabel AboutVersion;
         private RadLabel radLabel1;
         private Label ruMcURL;
         private Label GratitudesDescLabel;
-        private RadLabel GratitudesLabel;
         private RadPanel radPanel1;
         private RadButton ManageUsersButton;
         public RadDropDownList NicknameDropDownList;

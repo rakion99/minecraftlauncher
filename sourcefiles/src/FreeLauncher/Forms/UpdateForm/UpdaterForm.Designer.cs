@@ -75,7 +75,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.ShowIcon = false;
-            this.Text = "";
+            this.Text = "Launcher Updater";
             this.ThemeName = "VisualStudio2012Dark";
             ((System.ComponentModel.ISupportInitialize)(this.DownloadProgressbar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadingLabel)).EndInit();

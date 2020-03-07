@@ -121,12 +121,12 @@
   "Checkinggamedata": "Comprobando datos del juego...",
   "Downloadinggamedata": "Descargando datos del juego...",
   "Gamedatafinished": "Comprobacion de datos del juego terminada.",
-  "Downloadjava32": "Descargar java 32 bits?",
-  "Downloadjava64": "Descargar java 64 bits?",
-  "Javanotfound": "No se encontro Java Instalado!",
-  "Needjava": "Se ocupa tener Java instalado para iniciar minecraft\nEl launcher se cerrara",
+  "Javanotfound": "Instalacion local de Java no encontrada",
   "Cantconnectinternet": "No se pudo conectar a internet o el modo sin conexion fue activado.",
   "Checkinternet": "Porfavor comprueba tu conexion a internet y reinicia el Launcher.",
-  "UpdateLangen_Uk": "Hay una actualizacion para el idioma en_Uk\nQuieres actualizarlo?",
-  "LangLabel": "Idioma"
+  "UpdateLang": "Hay una actualizacion para el idioma {0}\nQuieres actualizarlo?",
+  "LangLabel": "Idioma",
+  "Javadownloadexit": "Presiona Aceptar para Descargar o Cancelar para salir",
+  "Javaupdatefound": "Se encontro una actulizacion para Java",
+  "Javaupdateinfo": "Hay una Actualizacion de Java\nLa version actual es: {0}\nLa nueva version: {1}\n\nQuieres actualizar?"
 }

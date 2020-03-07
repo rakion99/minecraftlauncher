@@ -204,13 +204,13 @@
         public string Checkinggamedata { get; set; }
         public string Downloadinggamedata { get; set; }
         public string Gamedatafinished { get; set; }
-        public string Downloadjava32 { get; set; }
-        public string Downloadjava64 { get; set; }
         public string Javanotfound { get; set; }
-        public string Needjava { get; set; }
         public string Cantconnectinternet { get; set; }
         public string Checkinternet { get; set; }
-        public string UpdateLangen_Uk { get; set; }
+        public string UpdateLang { get; set; }
         public string LangLabel { get; set; }
+        public string Javadownloadexit { get; set; }
+        public string Javaupdatefound { get; set; }
+        public string Javaupdateinfo { get; set; }
     }
 }

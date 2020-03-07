@@ -4,7 +4,7 @@
   "Authors": "rakion99",
   "NewsTabText": "NEWS",
   "ConsoleTabText": "CONSOLE",
-  "ManageVersionsTabText": "BUILDS MANAGMENT",
+  "ManageVersionsTabText": "VERSIONS MANAGMENT",
   "ManageProfilesTabText": "PROFILES MANAGMENT",
   "AboutTabText": "ABOUT",
   "LicensesTabText": "LICENSES",
@@ -121,12 +121,12 @@
   "Checkinggamedata": "Checking game data...",
   "Downloadinggamedata": "Downloading game data...",
   "Gamedatafinished": "Game data check finished.",
-  "Downloadjava32": "Download Java 32 bits?",
-  "Downloadjava64": "Download Java 64 bits?",
-  "Javanotfound": "Cannot find Java installed!",
-  "Needjava": "Need Java installed to run minecraft\nLauncher will now close",
+  "Javanotfound": "Local Java Installation not found",
   "Cantconnectinternet": "Cant connect to Internet or Offline mode is on.",
   "Checkinternet": "Please check your Internet connection and restart this launcher.",
-  "UpdateLangen_Uk": "An update for en_Uk language is available\n\nDo you want to update?",
-  "LangLabel": "Language"
+  "UpdateLang": "An update for {0} language is available\n\nDo you want to update?",
+  "LangLabel": "Language",
+  "Javadownloadexit": "Press OK to start the download or Cancel to exit",
+  "Javaupdatefound": "Java Update Found",
+  "Javaupdateinfo": "Java Update found\nCurrent Version: {0}\nNew version: {1}\n\nDo you want to Update?"
 }

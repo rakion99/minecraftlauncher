@@ -59,18 +59,12 @@ namespace FreeLauncher
                 ? JsonConvert.DeserializeObject<ApplicationConfiguration>(File.ReadAllText(_configurationFile))
                 : new ApplicationConfiguration {
                     SelectedLanguage =
-                        CultureInfo.InstalledUICulture.TwoLetterISOLanguageName == "es" ? "es_MX" : "en_UK"
+                        CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "es" ? "es_MX" : "en_UK"
                 };
         }
 
         private void LoadLocalization()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            string s = new StreamReader(assembly.GetManifestResourceStream("FreeLauncher.Translations.es_MX.json")).ReadToEnd();
-            LocalizationsList.Add(JObject.Parse(s)["LanguageTag"].ToString(), JsonConvert.DeserializeObject<ApplicationLocalization>(s));
-            if (ApplicationConfiguration.SelectedLanguage == "es_MX") {
-                Localization = LocalizationsList["es_MX"];
-            }
             var langsDirectory = new DirectoryInfo(Path.Combine(Application.StartupPath + @"\Launcher-langs\"));
             if (!langsDirectory.Exists) {
                 return;
