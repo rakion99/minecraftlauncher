@@ -47,7 +47,11 @@ namespace dotMCLauncher.Versioning
                 }
             }
             Regex re = new Regex(@"\$\{(\w+)\}", RegexOptions.IgnoreCase);
-            toReturn.Length--;
+
+            if (toReturn.Length > 0)
+            {
+                toReturn.Length--;
+            }
             return re.Replace(toReturn.ToString(),
                 match => values.ContainsKey(match.Groups[1].Value)
                     ? (!values[match.Groups[1].Value].Contains(" ")

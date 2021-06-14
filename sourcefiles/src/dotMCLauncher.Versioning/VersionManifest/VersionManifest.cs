@@ -108,6 +108,12 @@ namespace dotMCLauncher.Versioning
         [JsonProperty("downloads")]
         public VersionDownloadInfo DownloadInfo { get; set; }
 
+        // <summary>
+        // Java info
+        // </summary>
+        [JsonProperty("javaVersion")]
+        public Javainfo JavaVersionInfo { get; set; }
+
         /// <summary>
         /// Parent's manifest.
         /// </summary>
@@ -233,6 +239,11 @@ namespace dotMCLauncher.Versioning
         {
             return AssetInfo?.Url ?? string.Format("https://s3.amazonaws.com/Minecraft.Download/indexes/{0}.json",
                 AssetsIndex ?? "legacy");
+        }
+
+        public string GetJavaVersion()
+        {
+            return JavaVersionInfo?.majorVersion ?? null;
         }
     }
 

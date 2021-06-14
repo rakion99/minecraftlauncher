@@ -93,6 +93,8 @@ namespace FreeLauncher.Forms
             checkingversionavailabilityfinish, downloading, offlinemode, cantdownloadversion, logsdisabled, preparinglibraries, downloadfailed, cantdownload,
             finishedlibraries, checkinggamedata, downloadinggamedata, gamedatafinished, cantconnectinternet, checkinternet, langlabel;
 
+        public static bool useJava16 = false;
+
         #endregion
 
         public LauncherForm(Configuration configuration)
@@ -492,6 +494,24 @@ namespace FreeLauncher.Forms
                             jvmArguments = javaArguments +
                                 $"-Djava.library.path={nativesPath} -cp {(libraries.Contains(' ') ? $@"""{libraries}""" : libraries)}";
                         }
+                        useJava16 = selectedVersionManifest.GetJavaVersion() != null;
+                        BackgroundWorker bgw3 = new BackgroundWorker();
+                        bgw3.DoWork += delegate {
+                            if (!Java.IsJavaDownloaded)
+                            {
+                                DownloadJava();
+                            }
+                            else
+                            {
+                                string JavaXmlVersion = Program.XmlGetSingleNode($"/Launcher/Java/Version{WhichBit}/Java{WhichJavaVersion}/Version");
+                                string LOCALJAVA_VERSION = File.ReadAllText($"./Java/{WhichJavaVersion}/Windows_{WhichBit}/version");
+                                if (LOCALJAVA_VERSION != JavaXmlVersion)
+                                {
+                                    DownloadJava();
+                                }
+                            }
+                        };
+                        bgw3.RunWorkerCompleted += delegate {
                         ProcessStartInfo proc = new ProcessStartInfo {
                             UseShellExecute = false,
                             RedirectStandardOutput = true,
@@ -514,6 +534,8 @@ namespace FreeLauncher.Forms
                         SetControlBlockState(false);
                         UpdateVersionListView();
                         _versionToLaunch = null;
+                        };
+                        bgw3.RunWorkerAsync();
                     };
                     bgw2.RunWorkerAsync();
                 };
@@ -1017,6 +1039,104 @@ namespace FreeLauncher.Forms
                 AppendLog("Finished converting assets.");
             }
             SetStatusBarVisibility(false);
+        }
+
+        public static string WhichBit
+        {
+            get
+            {
+                if (Environment.Is64BitOperatingSystem)
+                {
+                    return "64bit";
+                }
+                else
+                {
+                    return "32bit";
+                }
+            }
+        }
+
+        public static string WhichJavaVersion
+        {
+            get
+            {
+                if (useJava16)
+                {
+                    return "16";
+                }
+                else
+                {
+                    return "8";
+                }
+            }
+        }
+
+        private int totalFiles;
+        private int filesExtracted;
+
+        private void DownloadJava()
+        {
+            using (WebClient JavaDownloadWebClient = new WebClient())
+            {
+                UpdateStatusBarAndLog($"Downloading Java {WhichBit} version {WhichJavaVersion}");
+                JavaDownloadWebClient.DownloadFile(new Uri(Program.XmlGetSingleNode($"/Launcher/Java/Version{WhichBit}/Java{WhichJavaVersion}/DownloadUrl")), $"./Java{WhichJavaVersion}_{WhichBit}.zip");
+            }
+            try
+            {
+                if (Directory.Exists($"./jre_{WhichBit}"))//old folder for Java in case is from old version(this will get removed some day)
+                {
+                    Thread.Sleep(100);
+                    AppendLog("Old Java folder found proceeding to delete.");
+                    if (Environment.Is64BitOperatingSystem)
+                    {
+                        new FileInfo("./jre_64bit/bin/server/classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
+                    }
+                    else
+                    {
+                        new FileInfo("./jre_32bit/bin/client/classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
+                    }
+                    Directory.Delete($"./jre_{WhichBit}", true);
+                    AppendLog("Old Java folder Deleted.");
+                }
+                if (Directory.Exists($"./Java/{WhichJavaVersion}/Windows_{WhichBit}"))//new folder for Java 8/16
+                {
+                    Thread.Sleep(100);
+                    AppendLog($"Deleting outdated Java {WhichJavaVersion} folder.");
+                    Directory.Delete($"./Java/{WhichJavaVersion}/Windows_{WhichBit}", true);
+                    AppendLog("Done.");
+                }
+                SetStatusBarVisibility(true);
+                SetStatusBarMaxValue(101);
+                using (ZipFile zip = ZipFile.Read($"./Java{WhichJavaVersion}_{WhichBit}.zip"))
+                {
+                    try
+                    {
+                        totalFiles = zip.Count;
+                        filesExtracted = 0;
+                        UpdateStatusBarAndLog($"Unzipping {zip.Name}");
+                        zip.ExtractProgress += Zip_ExtractProgress;
+                        zip.ExtractAll("./", ExtractExistingFileAction.OverwriteSilently);
+                    }
+                    catch (Exception ex)
+                    {
+                        AppendException($"Unzipping Fatal Exception: \n{ex.Message}\n{ex.StackTrace}");
+                    }
+                }
+                File.Delete($"./Java{WhichJavaVersion}_{WhichBit}.zip");
+                SetStatusBarVisibility(false);
+            }
+            catch (Exception ex)
+            {
+                AppendException($"Fatal Exception while trying to extract Java {WhichBit}: \n{ex.Message}\n{ex.StackTrace}");
+            }
+        }
+
+        private void Zip_ExtractProgress(object _, ExtractProgressEventArgs e)
+        {
+            if (e.EventType != ZipProgressEventType.Extracting_BeforeExtractEntry)
+                return;
+            filesExtracted++;
+            StatusBarValue = 100 * filesExtracted / totalFiles;
         }
 
         private string GetLatestVersion(Profile profile)

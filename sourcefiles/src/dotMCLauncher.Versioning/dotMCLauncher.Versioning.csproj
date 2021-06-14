@@ -54,6 +54,7 @@
     <Compile Include="Argument\SingleArgument.cs" />
     <Compile Include="AssetsInfo.cs" />
     <Compile Include="DownloadEntry.cs" />
+    <Compile Include="Javainfo.cs" />
     <Compile Include="Lib\Lib.cs" />
     <Compile Include="Lib\LibDownloadInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

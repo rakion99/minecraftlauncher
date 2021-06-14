@@ -5,8 +5,8 @@ namespace FreeLauncher
 {
     internal static class Java
     {
-        public static string JavaExecutable => GetJavaFolder == null ? null : string.Format("{0}\\bin\\java.exe", GetJavaFolder);
-        public static string JavaInstallationPath => GetJavaFolder;
+        public static string JavaExecutable => JavaFolder == null ? null : string.Format("{0}\\bin\\java.exe", JavaFolder);
+        public static string JavaInstallationPath => JavaFolder;
 
         public static string JavaBitInstallation
         {
@@ -28,27 +28,20 @@ namespace FreeLauncher
             }
         }
 
-        private static string GetJavaFolder => Environment.Is64BitOperatingSystem ? "./jre_64bit" : "./jre_32bit";
+        private static string JavaFolder => $"./Java/{Forms.LauncherForm.WhichJavaVersion}/Windows_{Forms.LauncherForm.WhichBit}";
 
         public static bool IsJavaDownloaded
         {
             get
             {
-                if (Environment.Is64BitOperatingSystem)
+                if (File.Exists($"./Java/{Forms.LauncherForm.WhichJavaVersion}/Windows_{Forms.LauncherForm.WhichBit}/bin/java.exe"))
                 {
-                    if (File.Exists("./jre_64bit/bin/java.exe"))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
                 else
                 {
-                    if (File.Exists("./jre_32bit/bin/java.exe"))
-                    {
-                        return true;
-                    }
+                    return false;
                 }
-                return false;
             }
         }
     }

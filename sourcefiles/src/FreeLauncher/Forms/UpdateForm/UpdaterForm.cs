@@ -51,30 +51,6 @@ namespace FreeLauncher.Forms.UpdateForm
                         File.WriteAllBytes($@".\tmp\Launcher-langs\{Program.UpdateLang}.json", data);
                     }
                 }
-                else if (Program.DownloadJava32bit)
-                {
-                    using (WebClient WebC3 = new WebClient())
-                    {
-                        DownloadingLabel.Text = "Downloading Java 32 bit";
-                        Directory.CreateDirectory(@"tmp");
-                        WebC3.DownloadProgressChanged += WebC_DownloadProgressChanged;
-                        WebC3.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadJava32bitCompleted);
-                        var data = await WebC3.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode("/Launcher/Java/Version32bit/DownloadUrl")));
-                        File.WriteAllBytes(@".\tmp\jre_32bit.zip", data);
-                    }
-                }
-                else if (Program.DownloadJava64bit)
-                {
-                    using (WebClient WebC4 = new WebClient())
-                    {
-                        DownloadingLabel.Text = "Downloading Java 64 bit";
-                        Directory.CreateDirectory(@"tmp");
-                        WebC4.DownloadProgressChanged += WebC_DownloadProgressChanged;
-                        WebC4.DownloadDataCompleted += new DownloadDataCompletedEventHandler(WebC_DownloadJava64bitCompleted);
-                        var data = await WebC4.DownloadDataTaskAsync(new Uri(Program.XmlGetSingleNode("/Launcher/Java/Version64bit/DownloadUrl")));
-                        File.WriteAllBytes(@".\tmp\jre_64bit.zip", data);
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -136,104 +112,6 @@ namespace FreeLauncher.Forms.UpdateForm
                     catch (Exception ex)
                     {
                         MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", $"Updater Fatal Exception while trying to update lang {Program.UpdateLang}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Invoke((MethodInvoker)delegate
-                    {
-                        Close();
-                    });
-                }).Start();
-            }
-        }
-
-        private void WebC_DownloadJava32bitCompleted(object sender, DownloadDataCompletedEventArgs e)
-        {
-            if (!e.Cancelled && e.Error == null)
-            {
-
-                MessageBox.Show("Download Completed\nUpdater will unzip java and then Launcher will run", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new Thread(() =>
-                {
-                    try
-                    {
-                        if (Directory.Exists(@".\jre_32bit"))
-                        {
-                            Thread.Sleep(100);
-                            new FileInfo(@".\jre_32bit\bin\client\classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
-                            Directory.Delete(@".\jre_32bit", true);
-                        }
-                        using (ZipFile zip = ZipFile.Read(@".\tmp\jre_32bit.zip"))
-                        {
-                            foreach (ZipEntry zipEntry in zip)
-                            {
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    DownloadingLabel.Text = $"Unzipping {zipEntry.FileName}";
-                                });
-                                try
-                                {
-                                    zipEntry.Extract(@".\",
-                                        ExtractExistingFileAction.OverwriteSilently);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message, "Unzipping Fatal Exception");
-                                }
-                            }
-                        }
-                        Directory.Delete(@".\tmp", true);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", "Updater Fatal Exception while trying to extract Java 32 bit", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Invoke((MethodInvoker)delegate
-                    {
-                        Close();
-                    });
-                }).Start();
-            }
-        }
-
-        private void WebC_DownloadJava64bitCompleted(object sender, DownloadDataCompletedEventArgs e)
-        {
-            if (!e.Cancelled && e.Error == null)
-            {
-
-                MessageBox.Show("Download Completed\nUpdater will unzip java and then Launcher will run", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                new Thread(() =>
-                {
-                    try
-                    {
-                        if (Directory.Exists(@".\jre_64bit"))
-                        {
-                            Thread.Sleep(100);
-                            new FileInfo(@".\jre_64bit\bin\server\classes.jsa").Attributes &= ~FileAttributes.ReadOnly;
-                            Directory.Delete(@".\jre_64bit", true);
-                        }
-                        using (ZipFile zip = ZipFile.Read(@".\tmp\jre_64bit.zip"))
-                        {
-                            foreach (ZipEntry zipEntry in zip)
-                            {
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    DownloadingLabel.Text = $"Unzipping {zipEntry.FileName}";
-                                });
-                                try
-                                {
-                                    zipEntry.Extract(@".\",
-                                        ExtractExistingFileAction.OverwriteSilently);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show(ex.Message, "Unzipping Fatal Exception");
-                                }
-                            }
-                        }
-                        Directory.Delete(@".\tmp", true);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", "Updater Fatal Exception while trying to extract Java 64 bit", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Invoke((MethodInvoker)delegate
                     {

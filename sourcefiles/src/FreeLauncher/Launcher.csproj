@@ -80,7 +80,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Release\</OutputPath>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -120,20 +120,20 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls">
-      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.dll</HintPath>
+      <HintPath>..\..\TelerikUI\2021_2_511\Telerik.WinControls.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark">
-      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
+      <HintPath>..\..\TelerikUI\2021_2_511\Telerik.WinControls.Themes.VisualStudio2012Dark.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.WinControls.UI">
-      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.UI.dll</HintPath>
+      <HintPath>..\..\TelerikUI\2021_2_511\Telerik.WinControls.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI.Design, Version=2017.1.221.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+    <Reference Include="Telerik.WinControls.UI.Design, Version=2020.1.218.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\RCWF\2020.R1\Telerik.WinControls.UI.Design.dll</HintPath>
+      <HintPath>..\..\TelerikUI\2021_2_511\Telerik.WinControls.UI.Design.dll</HintPath>
     </Reference>
     <Reference Include="TelerikCommon">
-      <HintPath>..\..\lib\RCWF\2020.R1\TelerikCommon.dll</HintPath>
+      <HintPath>..\..\TelerikUI\2021_2_511\TelerikCommon.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

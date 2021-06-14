@@ -27,8 +27,6 @@ namespace FreeLauncher
         private static bool langen_UK = false;
         private static bool langes_MX = false;
         public static bool Updaterlangen_uk = false;
-        public static bool DownloadJava32bit = false;
-        public static bool DownloadJava64bit = false;
         public static bool Langnotfound = false;
         public static string UpdateLang = null;
 
@@ -80,10 +78,6 @@ namespace FreeLauncher
             string Updatefoundtext = localization.Updatefound;
             string Updateinfotext = localization.UpdateInfo;
             string Updatelangtext = localization.UpdateLang;
-            string Javanotfound = localization.Javanotfound;
-            string Javadownloadexit = localization.Javadownloadexit;
-            string Javaupdatefound = localization.Javaupdatefound;
-            string Javaupdateinfo = localization.Javaupdateinfo;
             ServicePointManager.Expect100Continue = true;//win7 fix
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;//win7 fix
             using (WebClient client = new WebClient())
@@ -122,36 +116,6 @@ namespace FreeLauncher
             if (!_configuration.Arguments.OfflineMode)
             {
                 _configuration.Arguments.OfflineMode = !CheckForInternetConnection;
-            }
-
-            if (!Java.IsJavaDownloaded)
-            {
-                if (Environment.Is64BitOperatingSystem)
-                {
-                    DialogResult WantDownloadJava64 = MessageBox.Show(Javadownloadexit, Javanotfound, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    if (WantDownloadJava64 == DialogResult.OK)
-                    {
-                        DownloadJava64bit = true;
-                        new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                    }
-                    else
-                    {
-                        Environment.Exit(0);
-                    }
-                }
-                else
-                {
-                    DialogResult WantDownloadJava32 = MessageBox.Show(Javadownloadexit, Javanotfound, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                    if (WantDownloadJava32 == DialogResult.OK)
-                    {
-                        DownloadJava32bit = true;
-                        new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                    }
-                    else
-                    {
-                        Environment.Exit(0);
-                    }
-                }
             }
 
             if (_cfg.CheckforLauncherUpdates && !_configuration.Arguments.OfflineMode)
@@ -199,38 +163,6 @@ namespace FreeLauncher
                             }
                         }
                     }
-
-                    string JavaXmlVersion = XmlGetSingleNode("/Launcher/Java/JavaVersion");
-                    if (Environment.Is64BitOperatingSystem)
-                    {
-                        string[] JAVA64_VERSION = File.ReadAllLines("./jre_64bit/release")[0].Split('=');
-                        if (JAVA64_VERSION[1] != JavaXmlVersion)
-                        {
-                            string Java64Updateinfostring = string.Format(Javaupdateinfo, JAVA64_VERSION[1], JavaXmlVersion);
-                            DialogResult WantUpdateJava64 = MessageBox.Show(Java64Updateinfostring, Javaupdatefound,
-                                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            if (WantUpdateJava64 == DialogResult.OK)
-                            {
-                                DownloadJava64bit = true;
-                                new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        string[] JAVA32_VERSION = File.ReadAllLines("./jre_32bit/release")[0].Split('=');
-                        if (JAVA32_VERSION[1] != JavaXmlVersion)
-                        {
-                            string Java32Updateinfostring = string.Format(Javaupdateinfo, JAVA32_VERSION[1], JavaXmlVersion);
-                            DialogResult WantUpdateJava32 = MessageBox.Show(Java32Updateinfostring, Javaupdatefound,
-                                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
-                            if (WantUpdateJava32 == DialogResult.OK)
-                            {
-                                DownloadJava64bit = true;
-                                new Forms.UpdateForm.UpdaterForm().ShowDialog();
-                            }
-                        }
-                    }
                 }
                 catch (WebException wex)
                 {
@@ -265,8 +197,9 @@ namespace FreeLauncher
             {
                 Position = 0
             };
-
-            return BitConverter.ToString(System.Security.Cryptography.SHA384.Create().ComputeHash(filestream)).Replace("-", string.Empty);
+            var filehash = BitConverter.ToString(System.Security.Cryptography.SHA384.Create().ComputeHash(filestream)).Replace("-", string.Empty);
+            filestream.Close();
+            return filehash;
         }
     }
 }
