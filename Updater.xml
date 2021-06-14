@@ -13,12 +13,25 @@
         </es_MX>
     </Languages>
     <Java>
-        <JavaVersion>"1.8.0_241"</JavaVersion>
         <Version32bit>
-            <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/jre_32bit.zip</DownloadUrl>
+            <Java8>
+                <Version>1.8.0_241</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java8_32bit.zip</DownloadUrl>
+            </Java8>
+            <Java16>
+                <Version>16.0.1</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java16_32bit.zip</DownloadUrl>
+            </Java16>
         </Version32bit>
         <Version64bit>
-            <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/jre_64bit.zip</DownloadUrl>
+            <Java8>
+                <Version>1.8.0_241</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java8_64bit.zip</DownloadUrl>
+            </Java8>
+            <Java16>
+                <Version>16.0.1</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java16_64bit.zip</DownloadUrl>
+            </Java16>
         </Version64bit>
     </Java>
 </Launcher>
