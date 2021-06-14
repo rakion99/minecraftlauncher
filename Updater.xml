@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Launcher>
-    <version>1.0.5.30383</version>
-    <DownloadUrl>https://github.com/rakion99/minecraftlauncher/releases/download/1.0.5.30383/Launcher.exe</DownloadUrl>
+    <version>1.1.0.35923</version>
+    <DownloadUrl>https://github.com/rakion99/minecraftlauncher/releases/download/1.1.0.35923/Launcher.exe</DownloadUrl>
     <Languages>
         <en_UK>
             <SHA384>92D992CD7CEFC9E7186264C9EC6182B6A3CD2F6D4FA75AD8F1B28CF8EEFFF50EA45230AD9417061A2A310D36A999B3D1</SHA384>
