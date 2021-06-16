@@ -243,7 +243,20 @@ namespace dotMCLauncher.Versioning
 
         public string GetJavaVersion()
         {
-            return JavaVersionInfo?.majorVersion ?? null;
+            VersionManifest manifest = InheritableVersionManifest;
+            while (true)
+            {
+                if (manifest?.InheritsFrom == null)
+                {
+                    if (manifest?.JavaVersionInfo != null)
+                    {
+                        return manifest.JavaVersionInfo.majorVersion;
+                    }
+                    break;
+                }
+                manifest = manifest.InheritableVersionManifest;
+            }
+            return null;
         }
     }
 
