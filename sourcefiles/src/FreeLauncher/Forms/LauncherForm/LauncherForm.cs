@@ -497,17 +497,20 @@ namespace FreeLauncher.Forms
                         useJava16 = selectedVersionManifest.GetJavaVersion() != null;
                         BackgroundWorker bgw3 = new BackgroundWorker();
                         bgw3.DoWork += delegate {
-                            if (!Java.IsJavaDownloaded)
+                            if (_selectedProfile.JavaExecutable == null)
                             {
-                                DownloadJava();
-                            }
-                            else
-                            {
-                                string JavaXmlVersion = Program.XmlGetSingleNode($"/Launcher/Java/Version{WhichBit}/Java{WhichJavaVersion}/Version");
-                                string LOCALJAVA_VERSION = File.ReadAllText($"./Java/{WhichJavaVersion}/Windows_{WhichBit}/version");
-                                if (LOCALJAVA_VERSION != JavaXmlVersion)
+                                if (!Java.IsJavaDownloaded)
                                 {
                                     DownloadJava();
+                                }
+                                else
+                                {
+                                    string JavaXmlVersion = Program.XmlGetSingleNode($"/Launcher/Java/Version{WhichBit}/Java{WhichJavaVersion}/Version");
+                                    string LOCALJAVA_VERSION = File.ReadAllText($"./Java/{WhichJavaVersion}/Windows_{WhichBit}/version");
+                                    if (LOCALJAVA_VERSION != JavaXmlVersion)
+                                    {
+                                        DownloadJava();
+                                    }
                                 }
                             }
                         };
