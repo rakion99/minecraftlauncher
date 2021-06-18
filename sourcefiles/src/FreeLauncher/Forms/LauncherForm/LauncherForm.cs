@@ -127,7 +127,7 @@ namespace FreeLauncher.Forms
             AppendLog($"{new string(' ', 4)}Build: {Environment.OSVersion.Version.Build}");
             AppendLog($"{new string(' ', 4)}Version: {releaseId}");
             AppendLog($"{new string(' ', 4)}Is 64 Bits?: {Environment.Is64BitOperatingSystem}");
-            AppendLog($"{new string(' ', 2)}Java path: '{Java.JavaInstallationPath}' ({Java.JavaBitInstallation}-bit)");
+            AppendLog($"{new string(' ', 2)}Java path: '{Java.JavaInstallationPath}'");
             AppendLog(new string('=', 12));
 
             if (_configuration.LocalizationsList.Count != 0) {
@@ -1081,6 +1081,7 @@ namespace FreeLauncher.Forms
         {
             using (WebClient JavaDownloadWebClient = new WebClient())
             {
+                SetStatusBarVisibility(true);
                 UpdateStatusBarAndLog($"Downloading Java {WhichBit} version {WhichJavaVersion}");
                 JavaDownloadWebClient.DownloadFile(new Uri(Program.XmlGetSingleNode($"/Launcher/Java/Version{WhichBit}/Java{WhichJavaVersion}/DownloadUrl")), $"./Java{WhichJavaVersion}_{WhichBit}.zip");
             }
@@ -1108,7 +1109,6 @@ namespace FreeLauncher.Forms
                     Directory.Delete($"./Java/{WhichJavaVersion}/Windows_{WhichBit}", true);
                     AppendLog("Done.");
                 }
-                SetStatusBarVisibility(true);
                 SetStatusBarMaxValue(101);
                 using (ZipFile zip = ZipFile.Read($"./Java{WhichJavaVersion}_{WhichBit}.zip"))
                 {
@@ -1564,7 +1564,7 @@ namespace FreeLauncher.Forms
                 AppendLog($"{new string(' ', 4)}Build: {Environment.OSVersion.Version.Build}");
                 AppendLog($"{new string(' ', 4)}Is64BitOperatingSystem: {Environment.Is64BitOperatingSystem}");
                 AppendLog(
-                    $"{new string(' ', 2)}Java path: '{Java.JavaInstallationPath}' ({Java.JavaBitInstallation}-bit)");
+                    $"{new string(' ', 2)}Java path: '{_profile.JavaExecutable ?? Java.JavaInstallationPath}'");
                 AppendLog(string.Empty);
                 AppendLog("Process info:");
                 AppendLog($"{new string(' ', 2)}Minecraft version/type: {_output.McVersion}/{_output.McType}");

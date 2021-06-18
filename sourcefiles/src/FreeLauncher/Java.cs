@@ -8,26 +8,6 @@ namespace FreeLauncher
         public static string JavaExecutable => JavaFolder == null ? null : string.Format("{0}\\bin\\java.exe", JavaFolder);
         public static string JavaInstallationPath => JavaFolder;
 
-        public static string JavaBitInstallation
-        {
-            get
-            {
-                if (JavaExecutable == null)
-                {
-                    return "null";
-                }
-                if (!Environment.Is64BitOperatingSystem)
-                {
-                    return "32";
-                }
-                if (Environment.Is64BitOperatingSystem)
-                {
-                    return "64";
-                }
-                return "null";
-            }
-        }
-
         private static string JavaFolder => $"./Java/{Forms.LauncherForm.WhichJavaVersion}/Windows_{Forms.LauncherForm.WhichBit}";
 
         public static bool IsJavaDownloaded

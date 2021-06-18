@@ -11,12 +11,15 @@ namespace FreeLauncher
 {
     internal static class Program
     {
+        static Form SplashScreen;
+        static Form MainForm;
         [STAThread]
         public static void Main(string[] args)
         {
             ThemeResolutionService.ApplicationThemeName = "VisualStudio2012Dark";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            RadMessageBox.SetThemeName("VisualStudio2012Dark");//For some reason dont work here outside a form
             VersionCheck(args);
         }
 
@@ -127,7 +130,7 @@ namespace FreeLauncher
                     if (LauncherXmlVersion != UICurrentVerion)
                     {
                         string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, LauncherXmlVersion);
-                        DialogResult UIUpdaterChecker = MessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        DialogResult UIUpdaterChecker = RadMessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button1);
                         if (UIUpdaterChecker == DialogResult.Yes)
                         {
                             UpdateLauncher = true;
@@ -187,8 +190,27 @@ namespace FreeLauncher
                     MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", "Update Checker Fatal Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            Application.Run(new LauncherForm(configuration));
+
+            //Thanks stackoverflow: https://stackoverflow.com/a/32421479
+            SplashScreen = new Forms.Splash.SplashForm();
+            var splashThread = new System.Threading.Thread(new System.Threading.ThreadStart(
+                () => Application.Run(SplashScreen)));
+            splashThread.SetApartmentState(System.Threading.ApartmentState.STA);
+            splashThread.Start();
+            MainForm = new LauncherForm(configuration);
+            MainForm.Load += MainForm_LoadCompleted;
+            Application.Run(MainForm);
+
             configuration.SaveConfiguration();
+        }
+
+        private static void MainForm_LoadCompleted(object sender, EventArgs e)
+        {
+            if (SplashScreen != null && !SplashScreen.Disposing && !SplashScreen.IsDisposed)
+                SplashScreen.Invoke(new Action(() => SplashScreen.Close()));
+            MainForm.TopMost = true;
+            MainForm.Activate();
+            MainForm.TopMost = false;
         }
 
         private static string GetSHA384(string filepath)
