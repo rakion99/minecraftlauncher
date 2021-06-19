@@ -1461,10 +1461,10 @@ namespace FreeLauncher.Forms
                     Directory.GetDirectories(_configuration.McVersions)
                         .Select(versionDir => new DirectoryInfo(versionDir))
                         .Where(VersionManifest.IsValid)
-                        .Select(info => VersionManifest.ParseVersion(info, false)))
+                        .Select(info => VersionManifest.ParseVersion(info, true)))
                 {
                     versionsListView.Items.Add(version.VersionId, version.ReleaseType, version.ReleaseTime, version.LastUpdateTime,
-                        version.AssetsIndex ?? "null", version.InheritsFrom ?? _configuration.Localization.Independent);
+                        version.GetAssetsIndex(), version.InheritsFrom ?? _configuration.Localization.Independent);
                 }
                 string path = Path.Combine(_configuration.McVersions,
                     _selectedProfile.SelectedVersion ?? GetLatestVersion(_selectedProfile));

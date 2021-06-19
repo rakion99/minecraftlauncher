@@ -33,17 +33,17 @@ namespace FreeLauncher.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn12 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn13 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn14 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn15 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn16 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
-            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn1 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn2 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Type");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn3 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Launch date");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn4 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Last update");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn5 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 5", "Resource index");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn6 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "inherits");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn7 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 1", "Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn8 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 0", "Nombre Perfil");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn9 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 2", "Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn10 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 3", "Tipo de Version");
+            Telerik.WinControls.UI.ListViewDetailColumn listViewDetailColumn11 = new Telerik.WinControls.UI.ListViewDetailColumn("Column 4", "Visibilidad del Launcher");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             this.vs12theme = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
@@ -60,21 +60,21 @@ namespace FreeLauncher.Forms
             this.profilesListView = new Telerik.WinControls.UI.RadListView();
             this.AboutPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.CopyrightInfoLabel = new System.Windows.Forms.Label();
             this.LoggerGroupBox = new Telerik.WinControls.UI.RadGroupBox();
             this.CloseGameOutput = new Telerik.WinControls.UI.RadCheckBox();
             this.EnableMinecraftLogging = new Telerik.WinControls.UI.RadCheckBox();
+            this.CopyrightInfoLabel = new System.Windows.Forms.Label();
             this.MainGroupBox = new Telerik.WinControls.UI.RadGroupBox();
             this.CheckUpdatesCheckBox = new Telerik.WinControls.UI.RadCheckBox();
             this.Languagelabel = new Telerik.WinControls.UI.RadLabel();
             this.LangDropDownList = new Telerik.WinControls.UI.RadDropDownList();
             this.DownloadAssetsBox = new Telerik.WinControls.UI.RadCheckBox();
-            this.AboutVersion = new Telerik.WinControls.UI.RadLabel();
-            this.mcOfflineURL = new System.Windows.Forms.Label();
-            this.MCofflineDescLabel = new System.Windows.Forms.Label();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ruMcURL = new System.Windows.Forms.Label();
+            this.AboutVersion = new Telerik.WinControls.UI.RadLabel();
             this.GratitudesDescLabel = new System.Windows.Forms.Label();
+            this.ruMcURL = new System.Windows.Forms.Label();
+            this.MCofflineDescLabel = new System.Windows.Forms.Label();
+            this.mcOfflineURL = new System.Windows.Forms.Label();
             this.StatusBar = new Telerik.WinControls.UI.RadProgressBar();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.DeleteProfileButton = new Telerik.WinControls.UI.RadButton();
@@ -109,8 +109,8 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.Languagelabel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LangDropDownList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -235,25 +235,25 @@ namespace FreeLauncher.Forms
             this.versionsListView.AllowRemove = false;
             this.versionsListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.versionsListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn11.HeaderText = "Version";
-            listViewDetailColumn11.Width = 150F;
-            listViewDetailColumn12.HeaderText = "Type";
-            listViewDetailColumn12.Width = 100F;
-            listViewDetailColumn13.HeaderText = "Launch date";
-            listViewDetailColumn13.Width = 150F;
-            listViewDetailColumn14.HeaderText = "Last update";
-            listViewDetailColumn14.Width = 150F;
-            listViewDetailColumn15.HeaderText = "Resource index";
-            listViewDetailColumn15.Width = 120F;
-            listViewDetailColumn16.HeaderText = "inherits";
-            listViewDetailColumn16.Width = 100F;
+            listViewDetailColumn1.HeaderText = "Version";
+            listViewDetailColumn1.Width = 150F;
+            listViewDetailColumn2.HeaderText = "Type";
+            listViewDetailColumn2.Width = 100F;
+            listViewDetailColumn3.HeaderText = "Launch date";
+            listViewDetailColumn3.Width = 150F;
+            listViewDetailColumn4.HeaderText = "Last update";
+            listViewDetailColumn4.Width = 150F;
+            listViewDetailColumn5.HeaderText = "Resource index";
+            listViewDetailColumn5.Width = 120F;
+            listViewDetailColumn6.HeaderText = "inherits";
+            listViewDetailColumn6.Width = 100F;
             this.versionsListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn11,
-            listViewDetailColumn12,
-            listViewDetailColumn13,
-            listViewDetailColumn14,
-            listViewDetailColumn15,
-            listViewDetailColumn16});
+            listViewDetailColumn1,
+            listViewDetailColumn2,
+            listViewDetailColumn3,
+            listViewDetailColumn4,
+            listViewDetailColumn5,
+            listViewDetailColumn6});
             this.versionsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.versionsListView.EnableColumnSort = true;
             this.versionsListView.EnableFiltering = true;
@@ -288,18 +288,18 @@ namespace FreeLauncher.Forms
             this.profilesListView.AllowRemove = false;
             this.profilesListView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.profilesListView.CheckOnClickMode = Telerik.WinControls.UI.CheckOnClickMode.FirstClick;
-            listViewDetailColumn1.HeaderText = "Perfil";
-            listViewDetailColumn1.Visible = false;
-            listViewDetailColumn2.HeaderText = "Nombre Perfil";
-            listViewDetailColumn3.HeaderText = "Version";
-            listViewDetailColumn4.HeaderText = "Tipo de Version";
-            listViewDetailColumn5.HeaderText = "Visibilidad del Launcher";
+            listViewDetailColumn7.HeaderText = "Perfil";
+            listViewDetailColumn7.Visible = false;
+            listViewDetailColumn8.HeaderText = "Nombre Perfil";
+            listViewDetailColumn9.HeaderText = "Version";
+            listViewDetailColumn10.HeaderText = "Tipo de Version";
+            listViewDetailColumn11.HeaderText = "Visibilidad del Launcher";
             this.profilesListView.Columns.AddRange(new Telerik.WinControls.UI.ListViewDetailColumn[] {
-            listViewDetailColumn1,
-            listViewDetailColumn2,
-            listViewDetailColumn3,
-            listViewDetailColumn4,
-            listViewDetailColumn5});
+            listViewDetailColumn7,
+            listViewDetailColumn8,
+            listViewDetailColumn9,
+            listViewDetailColumn10,
+            listViewDetailColumn11});
             this.profilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profilesListView.EnableColumnSort = true;
             this.profilesListView.EnableFiltering = true;
@@ -349,19 +349,6 @@ namespace FreeLauncher.Forms
             this.label1.Text = "Powered by dedepete freelauncher";
             this.label1.Visible = false;
             // 
-            // CopyrightInfoLabel
-            // 
-            this.CopyrightInfoLabel.AutoSize = true;
-            this.CopyrightInfoLabel.BackColor = System.Drawing.Color.Transparent;
-            this.CopyrightInfoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyrightInfoLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.CopyrightInfoLabel.Location = new System.Drawing.Point(7, 283);
-            this.CopyrightInfoLabel.Name = "CopyrightInfoLabel";
-            this.CopyrightInfoLabel.Size = new System.Drawing.Size(165, 17);
-            this.CopyrightInfoLabel.TabIndex = 14;
-            this.CopyrightInfoLabel.Text = "Someshit about minecraft";
-            this.CopyrightInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // LoggerGroupBox
             // 
             this.LoggerGroupBox.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -397,6 +384,19 @@ namespace FreeLauncher.Forms
             this.EnableMinecraftLogging.Text = "Show Logs";
             this.EnableMinecraftLogging.ThemeName = "VisualStudio2012Dark";
             this.EnableMinecraftLogging.ToggleState = Telerik.WinControls.Enumerations.ToggleState.On;
+            // 
+            // CopyrightInfoLabel
+            // 
+            this.CopyrightInfoLabel.AutoSize = true;
+            this.CopyrightInfoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.CopyrightInfoLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CopyrightInfoLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.CopyrightInfoLabel.Location = new System.Drawing.Point(7, 283);
+            this.CopyrightInfoLabel.Name = "CopyrightInfoLabel";
+            this.CopyrightInfoLabel.Size = new System.Drawing.Size(165, 17);
+            this.CopyrightInfoLabel.TabIndex = 14;
+            this.CopyrightInfoLabel.Text = "Someshit about minecraft";
+            this.CopyrightInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainGroupBox
             // 
@@ -440,6 +440,7 @@ namespace FreeLauncher.Forms
             // 
             this.LangDropDownList.AutoCompleteDisplayMember = null;
             this.LangDropDownList.AutoCompleteValueMember = null;
+            this.LangDropDownList.DropDownAnimationEnabled = true;
             this.LangDropDownList.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.LangDropDownList.Location = new System.Drawing.Point(150, 21);
             this.LangDropDownList.Name = "LangDropDownList";
@@ -456,6 +457,20 @@ namespace FreeLauncher.Forms
             this.DownloadAssetsBox.TabIndex = 0;
             this.DownloadAssetsBox.Text = "Skip assets download";
             this.DownloadAssetsBox.ThemeName = "VisualStudio2012Dark";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 20.25F);
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
+            this.radLabel1.Location = new System.Drawing.Point(3, 17);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(123, 41);
+            this.radLabel1.TabIndex = 0;
+            this.radLabel1.Text = "Launcher";
+            this.radLabel1.ThemeName = "VisualStudio2012Dark";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel1.GetChildAt(0))).Text = "Launcher";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radLabel1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
             // 
             // AboutVersion
             // 
@@ -477,45 +492,17 @@ namespace FreeLauncher.Forms
             ((Telerik.WinControls.UI.RadLabelElement)(this.AboutVersion.GetChildAt(0))).Text = "0.0.0.000";
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.AboutVersion.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
             // 
-            // mcOfflineURL
+            // GratitudesDescLabel
             // 
-            this.mcOfflineURL.AutoSize = true;
-            this.mcOfflineURL.BackColor = System.Drawing.Color.Transparent;
-            this.mcOfflineURL.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mcOfflineURL.ForeColor = System.Drawing.Color.Gray;
-            this.mcOfflineURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.mcOfflineURL.Location = new System.Drawing.Point(7, 229);
-            this.mcOfflineURL.Name = "mcOfflineURL";
-            this.mcOfflineURL.Size = new System.Drawing.Size(157, 13);
-            this.mcOfflineURL.TabIndex = 11;
-            this.mcOfflineURL.Text = "https://github.com/dedepete";
-            this.mcOfflineURL.Click += new System.EventHandler(this.urlLabel_Click);
-            // 
-            // MCofflineDescLabel
-            // 
-            this.MCofflineDescLabel.AutoSize = true;
-            this.MCofflineDescLabel.BackColor = System.Drawing.Color.Transparent;
-            this.MCofflineDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.MCofflineDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.MCofflineDescLabel.Location = new System.Drawing.Point(7, 201);
-            this.MCofflineDescLabel.Name = "MCofflineDescLabel";
-            this.MCofflineDescLabel.Size = new System.Drawing.Size(64, 17);
-            this.MCofflineDescLabel.TabIndex = 9;
-            this.MCofflineDescLabel.Text = "dedepete";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 20.25F);
-            this.radLabel1.ForeColor = System.Drawing.Color.White;
-            this.radLabel1.Location = new System.Drawing.Point(3, 17);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(123, 41);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Launcher";
-            this.radLabel1.ThemeName = "VisualStudio2012Dark";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel1.GetChildAt(0))).Text = "Launcher";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radLabel1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.Transparent;
+            this.GratitudesDescLabel.AutoSize = true;
+            this.GratitudesDescLabel.BackColor = System.Drawing.Color.Transparent;
+            this.GratitudesDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.GratitudesDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.GratitudesDescLabel.Location = new System.Drawing.Point(11, 105);
+            this.GratitudesDescLabel.Name = "GratitudesDescLabel";
+            this.GratitudesDescLabel.Size = new System.Drawing.Size(58, 17);
+            this.GratitudesDescLabel.TabIndex = 6;
+            this.GratitudesDescLabel.Text = "rakion99";
             // 
             // ruMcURL
             // 
@@ -531,17 +518,31 @@ namespace FreeLauncher.Forms
             this.ruMcURL.Text = "https://github.com/rakion99";
             this.ruMcURL.Click += new System.EventHandler(this.urlLabel_Click);
             // 
-            // GratitudesDescLabel
+            // MCofflineDescLabel
             // 
-            this.GratitudesDescLabel.AutoSize = true;
-            this.GratitudesDescLabel.BackColor = System.Drawing.Color.Transparent;
-            this.GratitudesDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.GratitudesDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.GratitudesDescLabel.Location = new System.Drawing.Point(11, 105);
-            this.GratitudesDescLabel.Name = "GratitudesDescLabel";
-            this.GratitudesDescLabel.Size = new System.Drawing.Size(58, 17);
-            this.GratitudesDescLabel.TabIndex = 6;
-            this.GratitudesDescLabel.Text = "rakion99";
+            this.MCofflineDescLabel.AutoSize = true;
+            this.MCofflineDescLabel.BackColor = System.Drawing.Color.Transparent;
+            this.MCofflineDescLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.MCofflineDescLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MCofflineDescLabel.Location = new System.Drawing.Point(7, 201);
+            this.MCofflineDescLabel.Name = "MCofflineDescLabel";
+            this.MCofflineDescLabel.Size = new System.Drawing.Size(64, 17);
+            this.MCofflineDescLabel.TabIndex = 9;
+            this.MCofflineDescLabel.Text = "dedepete";
+            // 
+            // mcOfflineURL
+            // 
+            this.mcOfflineURL.AutoSize = true;
+            this.mcOfflineURL.BackColor = System.Drawing.Color.Transparent;
+            this.mcOfflineURL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.mcOfflineURL.ForeColor = System.Drawing.Color.Gray;
+            this.mcOfflineURL.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.mcOfflineURL.Location = new System.Drawing.Point(7, 229);
+            this.mcOfflineURL.Name = "mcOfflineURL";
+            this.mcOfflineURL.Size = new System.Drawing.Size(157, 13);
+            this.mcOfflineURL.TabIndex = 11;
+            this.mcOfflineURL.Text = "https://github.com/dedepete";
+            this.mcOfflineURL.Click += new System.EventHandler(this.urlLabel_Click);
             // 
             // StatusBar
             // 
@@ -602,6 +603,7 @@ namespace FreeLauncher.Forms
             this.NicknameDropDownList.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.NicknameDropDownList.AutoCompleteDisplayMember = null;
             this.NicknameDropDownList.AutoCompleteValueMember = null;
+            this.NicknameDropDownList.DropDownAnimationEnabled = true;
             this.NicknameDropDownList.Location = new System.Drawing.Point(314, 6);
             this.NicknameDropDownList.Name = "NicknameDropDownList";
             this.NicknameDropDownList.NullText = "Username";
@@ -653,6 +655,7 @@ namespace FreeLauncher.Forms
             // 
             this.profilesDropDownBox.AutoCompleteDisplayMember = null;
             this.profilesDropDownBox.AutoCompleteValueMember = null;
+            this.profilesDropDownBox.DropDownAnimationEnabled = true;
             this.profilesDropDownBox.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.profilesDropDownBox.Location = new System.Drawing.Point(41, 6);
             this.profilesDropDownBox.Name = "profilesDropDownBox";
@@ -727,8 +730,8 @@ namespace FreeLauncher.Forms
             ((System.ComponentModel.ISupportInitialize)(this.Languagelabel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LangDropDownList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadAssetsBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AboutVersion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StatusBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
