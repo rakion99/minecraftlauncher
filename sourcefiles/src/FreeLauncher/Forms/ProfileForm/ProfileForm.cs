@@ -1,12 +1,12 @@
-﻿using System;
+﻿using dotMCLauncher.Profiling;
+using dotMCLauncher.Versioning;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using dotMCLauncher.Profiling;
-using dotMCLauncher.Versioning;
-using Newtonsoft.Json.Linq;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -25,9 +25,12 @@ namespace FreeLauncher.Forms
             InitializeComponent();
             LoadLocalization();
             otherCheckBox.Checked = true;
-            if (Profile.AllowedReleaseTypes != null) {
-                foreach (string item in Profile.AllowedReleaseTypes) {
-                    switch (item) {
+            if (Profile.AllowedReleaseTypes != null)
+            {
+                foreach (string item in Profile.AllowedReleaseTypes)
+                {
+                    switch (item)
+                    {
                         case "snapshot":
                             snapshotsCheckBox.Checked = true;
                             break;
@@ -42,9 +45,12 @@ namespace FreeLauncher.Forms
                     }
                 }
             }
-            if (Profile.DisallowedReleaseTypes != null) {
-                foreach (string item in Profile.DisallowedReleaseTypes) {
-                    switch (item) {
+            if (Profile.DisallowedReleaseTypes != null)
+            {
+                foreach (string item in Profile.DisallowedReleaseTypes)
+                {
+                    switch (item)
+                    {
                         case "modified":
                             otherCheckBox.Checked = false;
                             break;
@@ -55,22 +61,28 @@ namespace FreeLauncher.Forms
             }
             GetVersions();
             nameBox.Text = Profile.ProfileName;
-            if (Profile.WorkingDirectory != null) {
+            if (Profile.WorkingDirectory != null)
+            {
                 GameDirectoryCheckBox.Checked = true;
                 gameDirectoryBox.Text = Profile.WorkingDirectory;
-            } else {
+            }
+            else
+            {
                 gameDirectoryBox.Text = _configuration.McDirectory;
             }
-            if (Profile.WindowInfo != null) {
+            if (Profile.WindowInfo != null)
+            {
                 xResolutionBox.Text = Profile.WindowInfo.Width.ToString();
                 yResolutionBox.Text = Profile.WindowInfo.Height.ToString();
             }
-            if (Profile.ConnectionSettigs != null) {
+            if (Profile.ConnectionSettigs != null)
+            {
                 FastConnectCheckBox.Checked = true;
                 ipTextBox.Text = Profile.ConnectionSettigs.ServerIp;
                 portTextBox.Text = Profile.ConnectionSettigs.ServerPort.ToString();
             }
-            switch (Profile.LauncherVisibilityOnGameClose) {
+            switch (Profile.LauncherVisibilityOnGameClose)
+            {
                 case Profile.LauncherVisibility.HIDDEN:
                     stateBox.SelectedIndex = 1;
                     break;
@@ -81,7 +93,8 @@ namespace FreeLauncher.Forms
                     stateBox.SelectedIndex = 0;
                     break;
             }
-            if (Java.JavaExecutable == @"\bin\java.exe") {
+            if (Java.JavaExecutable == @"\bin\java.exe")
+            {
                 RadMessageBox.Show(this, _configuration.Localization.JavaDetectionFailed,
                     _configuration.Localization.Error, MessageBoxButtons.OK, RadMessageIcon.Error);
             }
@@ -130,32 +143,44 @@ namespace FreeLauncher.Forms
                     _configuration.McDirectory + @"\",
                     string.Empty
                 }.Contains(gameDirectoryBox.Text) &&
-                gameDirectoryBox.Text != string.Empty) {
+                gameDirectoryBox.Text != string.Empty)
+            {
                 Profile.WorkingDirectory = gameDirectoryBox.Text;
-            } else {
+            }
+            else
+            {
                 Profile.WorkingDirectory = null;
             }
             if ((xResolutionBox.Text != "854" || yResolutionBox.Text != "480") && xResolutionBox.Text != string.Empty &&
-                yResolutionBox.Text != string.Empty) {
-                WindowInfo winInfo = new WindowInfo {
+                yResolutionBox.Text != string.Empty)
+            {
+                WindowInfo winInfo = new WindowInfo
+                {
                     Width = Convert.ToInt32(xResolutionBox.Text),
                     Height = Convert.ToInt32(yResolutionBox.Text)
                 };
                 Profile.WindowInfo = winInfo;
-            } else {
+            }
+            else
+            {
                 Profile.WindowInfo = null;
             }
-            if (FastConnectCheckBox.Checked && ipTextBox.Text != null) {
-                Profile.ConnectionSettigs = new ServerInfo {
+            if (FastConnectCheckBox.Checked && ipTextBox.Text != null)
+            {
+                Profile.ConnectionSettigs = new ServerInfo
+                {
                     ServerIp = ipTextBox.Text,
                     ServerPort = Convert.ToUInt32((portTextBox.Text != string.Empty
                         ? portTextBox.Text
                         : "25565"))
                 };
-            } else {
+            }
+            else
+            {
                 Profile.ConnectionSettigs = null;
             }
-            switch (stateBox.SelectedItem.Tag.ToString()) {
+            switch (stateBox.SelectedItem.Tag.ToString())
+            {
                 case "hide launcher and re-open when game closes":
                     Profile.LauncherVisibilityOnGameClose = Profile.LauncherVisibility.HIDDEN;
                     break;
@@ -168,37 +193,49 @@ namespace FreeLauncher.Forms
             }
             List<string> allowedTypes = new List<string>();
             List<string> disallowedTypes = new List<string>();
-            if (snapshotsCheckBox.Checked) {
+            if (snapshotsCheckBox.Checked)
+            {
                 allowedTypes.Add("snapshot");
             }
-            if (betaCheckBox.Checked) {
+            if (betaCheckBox.Checked)
+            {
                 allowedTypes.Add("old_beta");
             }
-            if (alphaCheckBox.Checked) {
+            if (alphaCheckBox.Checked)
+            {
                 allowedTypes.Add("old_alpha");
             }
-            if (!otherCheckBox.Checked) {
+            if (!otherCheckBox.Checked)
+            {
                 disallowedTypes.Add("modified");
             }
-            if (allowedTypes.Count == 0) {
+            if (allowedTypes.Count == 0)
+            {
                 allowedTypes = null;
             }
-            if (disallowedTypes.Count == 0) {
+            if (disallowedTypes.Count == 0)
+            {
                 disallowedTypes = null;
             }
             Profile.SelectedVersion = versionsDropDownList.SelectedItem.Tag?.ToString();
             Profile.AllowedReleaseTypes = allowedTypes?.ToArray();
             Profile.DisallowedReleaseTypes = disallowedTypes?.ToArray();
             if (JavaArgumentsCheckBox.Checked && javaArgumentsBox.Text != "-Xmx1024M" &&
-                javaArgumentsBox.Text != string.Empty) {
+                javaArgumentsBox.Text != string.Empty)
+            {
                 Profile.JavaArguments = javaArgumentsBox.Text;
-            } else {
+            }
+            else
+            {
                 Profile.JavaArguments = null;
             }
             if (JavaExecutableCheckBox.Checked && javaExecutableBox.Text != Java.JavaExecutable &&
-                javaExecutableBox.Text != string.Empty) {
+                javaExecutableBox.Text != string.Empty)
+            {
                 Profile.JavaExecutable = javaExecutableBox.Text;
-            } else {
+            }
+            else
+            {
                 Profile.JavaExecutable = null;
             }
         }
@@ -210,30 +247,38 @@ namespace FreeLauncher.Forms
             List<string> list = new List<string>();
             string versionsManifestFile = Path.Combine(_configuration.McVersions, "versions.json");
             JObject json = JObject.Parse(File.ReadAllText(versionsManifestFile));
-            foreach (JObject ver in json["versions"]) {
+            foreach (JObject ver in json["versions"])
+            {
                 string id = ver["id"].ToString(),
                        type = ver["type"].ToString(),
                        text = $"{type} {id}";
                 list.Add(string.Format("{0} {1}", type, id));
-                if (IsVersionInstalled(id)) {
+                if (IsVersionInstalled(id))
+                {
                     text += " \u2705";
                 }
-                RadListDataItem ritem = new RadListDataItem {
-                    Text = text, Tag = id
+                RadListDataItem ritem = new RadListDataItem
+                {
+                    Text = text,
+                    Tag = id
                 };
-                switch (type) {
+                switch (type)
+                {
                     case "snapshot":
-                        if (snapshotsCheckBox.Checked) {
+                        if (snapshotsCheckBox.Checked)
+                        {
                             versionsDropDownList.Items.Add(ritem);
                         }
                         break;
                     case "old_beta":
-                        if (betaCheckBox.Checked) {
+                        if (betaCheckBox.Checked)
+                        {
                             versionsDropDownList.Items.Add(ritem);
                         }
                         break;
                     case "old_alpha":
-                        if (alphaCheckBox.Checked) {
+                        if (alphaCheckBox.Checked)
+                        {
                             versionsDropDownList.Items.Add(ritem);
                         }
                         break;
@@ -241,13 +286,15 @@ namespace FreeLauncher.Forms
                         versionsDropDownList.Items.Add(ritem);
                         break;
                     default:
-                        if (otherCheckBox.Checked) {
+                        if (otherCheckBox.Checked)
+                        {
                             versionsDropDownList.Items.Add(ritem);
                         }
                         break;
                 }
             }
-            if (otherCheckBox.Checked) {
+            if (otherCheckBox.Checked)
+            {
                 foreach (VersionManifest version in from b in Directory.GetDirectories(_configuration.McVersions)
                     where File.Exists(string.Format(@"{0}\{1}\{1}.json", _configuration.McVersions,
                         new DirectoryInfo(b).Name))
@@ -258,20 +305,25 @@ namespace FreeLauncher.Forms
                     select
                     VersionManifest.ParseVersion(
                         new DirectoryInfo(string.Format(@"{0}\{1}\", _configuration.McVersions,
-                            new DirectoryInfo(b).Name)), false)) {
-                    versionsDropDownList.Items.Add(new RadListDataItem(version.ReleaseType + " " + version.VersionId) {
+                            new DirectoryInfo(b).Name)), false))
+                {
+                    versionsDropDownList.Items.Add(new RadListDataItem(version.ReleaseType + " " + version.VersionId)
+                    {
                         Tag = version.VersionId
                     });
                 }
             }
             versionsDropDownList.Items[0].Text = string.Format(versionsDropDownList.Items[0].Text, versionsDropDownList.Items[1].Tag);
-            if (IsVersionInstalled(versionsDropDownList.Items[1].Tag.ToString())) {
+            if (IsVersionInstalled(versionsDropDownList.Items[1].Tag.ToString()))
+            {
                 versionsDropDownList.Items[0].Text += " \u2705";
             }
-            if (Profile.SelectedVersion != null) {
+            if (Profile.SelectedVersion != null)
+            {
                 foreach (
                     RadListDataItem a in
-                    versionsDropDownList.Items.Where(a => a.Tag?.ToString() == Profile.SelectedVersion)) {
+                    versionsDropDownList.Items.Where(a => a.Tag?.ToString() == Profile.SelectedVersion))
+                {
                     versionsDropDownList.SelectedItem = a;
                     return;
                 }

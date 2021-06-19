@@ -37,7 +37,7 @@
         public string LastUpdatedHeader { get; set; } = "Ultima actualizacion";
         public string AssetsIndexHeader { get; set; } = "Assets Index";
         public string DependencyHeader { get; set; } = "Depende de";
-        
+
         public string Restore { get; set; } = "Restaurar";
         public string OpenLocation { get; set; } = "Abrir ubicacion";
         public string DeleteVersion { get; set; } = "Borrar";

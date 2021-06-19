@@ -1,12 +1,12 @@
-﻿using System;
+﻿using dotMCLauncher.Networking;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using dotMCLauncher.Networking;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Data;
@@ -45,15 +45,21 @@ namespace FreeLauncher.Forms
             ControlBox = false;
             AddUserButton.Text = _configuration.Localization.PleaseWait;
             BackgroundWorker bgw = new BackgroundWorker();
-            bgw.DoWork += delegate {
-                User user = new User {
+            bgw.DoWork += delegate
+            {
+                User user = new User
+                {
                     Username = UsernameTextBox.Text
                 };
-                if (!YesNoToggleSwitch.Value) {
+                if (!YesNoToggleSwitch.Value)
+                {
                     user.Type = "offline";
-                    if (_userManager.Accounts.ContainsKey(user.Username)) {
+                    if (_userManager.Accounts.ContainsKey(user.Username))
+                    {
                         _userManager.Accounts[user.Username] = user;
-                    } else {
+                    }
+                    else
+                    {
                         _userManager.Accounts.Add(user.Username, user);
                     }
                     _userManager.SelectedUsername = user.Username;
@@ -61,24 +67,33 @@ namespace FreeLauncher.Forms
                     UpdateUsers();
                     return;
                 }
-                AuthManager auth = new AuthManager {
-                    Email = UsernameTextBox.Text, Password = PasswordTextBox.Text
+                AuthManager auth = new AuthManager
+                {
+                    Email = UsernameTextBox.Text,
+                    Password = PasswordTextBox.Text
                 };
-                try {
+                try
+                {
                     auth.Login();
                     user.Type = auth.IsLegacy ? "legacy" : "mojang";
                     user.AccessToken = auth.AccessToken;
                     user.ClientToken = auth.ClientToken;
                     user.Uuid = auth.Uuid;
                     user.UserProperties = auth.UserProperties;
-                    if (_userManager.Accounts.ContainsKey(user.Username)) {
+                    if (_userManager.Accounts.ContainsKey(user.Username))
+                    {
                         _userManager.Accounts[user.Username] = user;
-                    } else {
+                    }
+                    else
+                    {
                         _userManager.Accounts.Add(user.Username, user);
                     }
                     _userManager.SelectedUsername = user.Username;
-                } catch (WebException ex) {
-                    if (ex.Status != WebExceptionStatus.ProtocolError) {
+                }
+                catch (WebException ex)
+                {
+                    if (ex.Status != WebExceptionStatus.ProtocolError)
+                    {
                         return;
                     }
                     RadMessageBox.Show(_configuration.Localization.IncorrectLoginOrPassword,
@@ -86,14 +101,16 @@ namespace FreeLauncher.Forms
                         RadMessageIcon.Error);
                     return;
                 }
-                Invoke(new Action(() => {
+                Invoke(new Action(() =>
+                {
                     SaveUsers();
                     UpdateUsers();
                     UsernameTextBox.Clear();
                     PasswordTextBox.Clear();
                 }));
             };
-            bgw.RunWorkerCompleted += delegate {
+            bgw.RunWorkerCompleted += delegate
+            {
                 UsernameTextBox.Enabled = true;
                 YesNoToggleSwitch.Enabled = true;
                 ControlBox = true;
@@ -106,8 +123,10 @@ namespace FreeLauncher.Forms
         private void UpdateUsers()
         {
             UsersListControl.Items.Clear();
-            foreach (KeyValuePair<string, User> item in _userManager.Accounts) {
-                UsersListControl.Items.Add(new RadListDataItem($"{item.Key}[{_userManager.Accounts[item.Key].Type}]") {
+            foreach (KeyValuePair<string, User> item in _userManager.Accounts)
+            {
+                UsersListControl.Items.Add(new RadListDataItem($"{item.Key}[{_userManager.Accounts[item.Key].Type}]")
+                {
                     Tag = item.Key
                 });
             }
@@ -117,7 +136,8 @@ namespace FreeLauncher.Forms
         {
             File.WriteAllText(_configuration.McLauncher + @"\users.json",
                 JsonConvert.SerializeObject(_userManager, Formatting.Indented,
-                    new JsonSerializerSettings {
+                    new JsonSerializerSettings
+                    {
                         NullValueHandling = NullValueHandling.Ignore
                     }));
         }
@@ -137,14 +157,20 @@ namespace FreeLauncher.Forms
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(UsernameTextBox.Text)) {
+            if (!string.IsNullOrWhiteSpace(UsernameTextBox.Text))
+            {
                 if (!YesNoToggleSwitch.Value ||
-                    YesNoToggleSwitch.Value && !string.IsNullOrWhiteSpace(PasswordTextBox.Text)) {
+                    YesNoToggleSwitch.Value && !string.IsNullOrWhiteSpace(PasswordTextBox.Text))
+                {
                     AddUserButton.Enabled = true;
-                } else if (YesNoToggleSwitch.Value && string.IsNullOrWhiteSpace(PasswordTextBox.Text)) {
+                }
+                else if (YesNoToggleSwitch.Value && string.IsNullOrWhiteSpace(PasswordTextBox.Text))
+                {
                     AddUserButton.Enabled = false;
                 }
-            } else {
+            }
+            else
+            {
                 AddUserButton.Enabled = false;
             }
         }

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using CommandLine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
-using CommandLine;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FreeLauncher
 {
@@ -57,7 +55,8 @@ namespace FreeLauncher
         {
             return File.Exists(_configurationFile)
                 ? JsonConvert.DeserializeObject<ApplicationConfiguration>(File.ReadAllText(_configurationFile))
-                : new ApplicationConfiguration {
+                : new ApplicationConfiguration
+                {
                     SelectedLanguage =
                         CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "es" ? "es_MX" : "en_UK"
                 };
@@ -66,18 +65,22 @@ namespace FreeLauncher
         private void LoadLocalization()
         {
             var langsDirectory = new DirectoryInfo(Path.Combine(Application.StartupPath + @"\Launcher-langs\"));
-            if (!langsDirectory.Exists) {
+            if (!langsDirectory.Exists)
+            {
                 return;
             }
             foreach (var local in langsDirectory
                 .GetFiles("*.json", SearchOption.AllDirectories)
                 .Select(file => JObject.Parse(File.ReadAllText(file.FullName)))
-                .Select(jo => JsonConvert.DeserializeObject<ApplicationLocalization>(jo.ToString()))) {
-                if (LocalizationsList.ContainsKey(local.LanguageTag)) {
+                .Select(jo => JsonConvert.DeserializeObject<ApplicationLocalization>(jo.ToString())))
+            {
+                if (LocalizationsList.ContainsKey(local.LanguageTag))
+                {
                     continue;
                 }
                 LocalizationsList.Add(local.LanguageTag, local);
-                if (local.LanguageTag == ApplicationConfiguration.SelectedLanguage) {
+                if (local.LanguageTag == ApplicationConfiguration.SelectedLanguage)
+                {
                     Localization = local;
                 }
             }

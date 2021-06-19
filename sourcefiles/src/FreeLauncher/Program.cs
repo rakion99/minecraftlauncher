@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FreeLauncher.Forms;
+using System;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using System.Xml;
-using FreeLauncher.Forms;
 using Telerik.WinControls;
 
 namespace FreeLauncher
@@ -29,7 +30,6 @@ namespace FreeLauncher
         private static Configuration _configuration;
         private static bool langen_UK = false;
         private static bool langes_MX = false;
-        public static bool Updaterlangen_uk = false;
         public static bool Langnotfound = false;
         public static string UpdateLang = null;
 
@@ -83,6 +83,16 @@ namespace FreeLauncher
             string Updatelangtext = localization.UpdateLang;
             ServicePointManager.Expect100Continue = true;//win7 fix
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;//win7 fix
+
+            //Thanks stackoverflow: https://stackoverflow.com/a/32421479
+            SplashScreen = new Forms.Splash.SplashForm();
+            var splashThread = new System.Threading.Thread(new System.Threading.ThreadStart(
+                () => Application.Run(SplashScreen)));
+            splashThread.SetApartmentState(System.Threading.ApartmentState.STA);
+            splashThread.Start();
+            MainForm = new LauncherForm(configuration);
+            MainForm.Load += MainForm_LoadCompleted;
+
             using (WebClient client = new WebClient())
             {
                 client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
@@ -130,7 +140,7 @@ namespace FreeLauncher
                     if (LauncherXmlVersion != UICurrentVerion)
                     {
                         string UIUpdateFound = string.Format(Updateinfotext, UICurrentVerion, LauncherXmlVersion);
-                        DialogResult UIUpdaterChecker = RadMessageBox.Show(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button1);
+                        DialogResult UIUpdaterChecker = CustomRadMessagebox(UIUpdateFound, Updatefoundtext, MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button1);
                         if (UIUpdaterChecker == DialogResult.Yes)
                         {
                             UpdateLauncher = true;
@@ -144,7 +154,7 @@ namespace FreeLauncher
                         if (XmlGetSingleNode("/Launcher/Languages/en_UK/SHA384") != localen_UKSHA384)
                         {
                             string Updatelangen_UK = string.Format(Updatelangtext, "en_UK");
-                            DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelangen_UK, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                            DialogResult DLLUpdaterChecker = CustomRadMessagebox(Updatelangen_UK, Updatefoundtext, MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button1);
                             if (DLLUpdaterChecker == DialogResult.Yes)
                             {
                                 UpdateLang = "en_UK";
@@ -158,7 +168,7 @@ namespace FreeLauncher
                         if (XmlGetSingleNode("/Launcher/Languages/es_MX/SHA384") != locales_MXSHA384)
                         {
                             string Updatelanges_MX = string.Format(Updatelangtext, "es_MX");
-                            DialogResult DLLUpdaterChecker = MessageBox.Show(Updatelanges_MX, Updatefoundtext, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                            DialogResult DLLUpdaterChecker = CustomRadMessagebox(Updatelanges_MX, Updatefoundtext, MessageBoxButtons.YesNo, RadMessageIcon.Info, MessageBoxDefaultButton.Button1);
                             if (DLLUpdaterChecker == DialogResult.Yes)
                             {
                                 UpdateLang = "es_MX";
@@ -173,32 +183,25 @@ namespace FreeLauncher
                     {
                         if (((HttpWebResponse)wex.Response).StatusCode == HttpStatusCode.NotFound)
                         {
-                            MessageBox.Show("Something happened and updater got error 404", "Update Checker Web 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CustomRadMessagebox("Something happened and updater got error 404", "Update Checker Web 404", MessageBoxButtons.OK, RadMessageIcon.Error);
                         }
                     }
                     else if (wex.Response == null)
                     {
-                        MessageBox.Show("Can't connect because the update server is down, you dont have an internet connection or something is blocking it", "Update Checker Can't connect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomRadMessagebox("Can't connect because the update server is down, you dont have an internet connection or something is blocking it", "Update Checker Can't connect", MessageBoxButtons.OK, RadMessageIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show($"{wex.Message.ToString()}", "Update Checker Web Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CustomRadMessagebox($"{wex.Message}", "Update Checker Web Exception", MessageBoxButtons.OK, RadMessageIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"{ex.Message.ToString()}\n{ex.StackTrace}", "Update Checker Fatal Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CustomRadMessagebox($"{ex.Message}\n{ex.StackTrace}", "Update Checker Fatal Exception", MessageBoxButtons.OK, RadMessageIcon.Error);
                 }
             }
 
-            //Thanks stackoverflow: https://stackoverflow.com/a/32421479
-            SplashScreen = new Forms.Splash.SplashForm();
-            var splashThread = new System.Threading.Thread(new System.Threading.ThreadStart(
-                () => Application.Run(SplashScreen)));
-            splashThread.SetApartmentState(System.Threading.ApartmentState.STA);
-            splashThread.Start();
-            MainForm = new LauncherForm(configuration);
-            MainForm.Load += MainForm_LoadCompleted;
+            
             Application.Run(MainForm);
 
             configuration.SaveConfiguration();
@@ -222,6 +225,57 @@ namespace FreeLauncher
             var filehash = BitConverter.ToString(System.Security.Cryptography.SHA384.Create().ComputeHash(filestream)).Replace("-", string.Empty);
             filestream.Close();
             return filehash;
+        }
+
+        private static DialogResult CustomRadMessagebox(string text, string caption, MessageBoxButtons buttons, RadMessageIcon icon, MessageBoxDefaultButton defaultButton = MessageBoxDefaultButton.Button1)
+        {
+            Stream stream;
+            Bitmap CustomRadMessageBoxicon = new Bitmap(1, 1);
+
+            switch (icon)
+            {
+
+                case RadMessageIcon.Info:
+                    stream = (System.Reflection.Assembly.GetAssembly(typeof(RadMessageBox)).
+                        GetManifestResourceStream("Telerik.WinControls.UI.Resources.RadMessageBox.MessageInfo.png"));
+                    CustomRadMessageBoxicon = Image.FromStream(stream) as Bitmap;
+                    stream.Close();
+                    break;
+                case RadMessageIcon.Question:
+                    stream = (System.Reflection.Assembly.GetAssembly(typeof(RadMessageBox)).
+                        GetManifestResourceStream("Telerik.WinControls.UI.Resources.RadMessageBox.MessageQuestion.png"));
+                    CustomRadMessageBoxicon = Image.FromStream(stream) as Bitmap;
+                    stream.Close();
+                    break;
+                case RadMessageIcon.Exclamation:
+                    stream = (System.Reflection.Assembly.GetAssembly(typeof(RadMessageBox)).
+                        GetManifestResourceStream("Telerik.WinControls.UI.Resources.RadMessageBox.MessageExclamation.png"));
+                    CustomRadMessageBoxicon = Image.FromStream(stream) as Bitmap;
+                    stream.Close();
+                    break;
+                case RadMessageIcon.Error:
+                    stream = (System.Reflection.Assembly.GetAssembly(typeof(RadMessageBox)).
+                        GetManifestResourceStream("Telerik.WinControls.UI.Resources.RadMessageBox.MessageError.png"));
+                    CustomRadMessageBoxicon = Image.FromStream(stream) as Bitmap;
+                    stream.Close();
+                    break;
+            }
+
+            RadMessageBoxForm form = new RadMessageBoxForm
+            {
+                RightToLeft = RightToLeft.No,
+                EnableBeep = true,
+                MessageText = text,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen,
+                MessageIcon = CustomRadMessageBoxicon,
+                ButtonsConfiguration = buttons,
+                DefaultButton = defaultButton,
+                TopMost = true
+            };
+
+            form.ShowDialog();
+            return form.DialogResult;
         }
     }
 }
