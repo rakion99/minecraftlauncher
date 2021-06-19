@@ -357,6 +357,7 @@ namespace FreeLauncher.Forms
         private void javaExecutableCheckBox_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             javaExecutableBox.Enabled = JavaExecutableCheckBox.Checked;
+            SelectJavafolderbutton.Enabled = JavaExecutableCheckBox.Checked;
         }
 
         private void javaArgumentsCheckBox_ToggleStateChanged(object sender, StateChangedEventArgs args)
@@ -367,6 +368,24 @@ namespace FreeLauncher.Forms
         private void openGameDirectoryButton_Click(object sender, EventArgs e)
         {
             Process.Start(gameDirectoryBox.Text);
+        }
+
+        private void SelectJavafolderbutton_Click(object sender, EventArgs e)
+        {
+
+            RadOpenFileDialog openFileDialog = new RadOpenFileDialog
+            {
+                InitialDirectory = Environment.CurrentDirectory,
+                RestoreDirectory = true,
+                ExpandToCurrentDirectory = false,
+                FileName = "Java",
+                DefaultExt = ".exe",
+                Filter = "Executable file|*.exe"
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                javaExecutableBox.Text = openFileDialog.FileName;
+            }
         }
     }
 }
