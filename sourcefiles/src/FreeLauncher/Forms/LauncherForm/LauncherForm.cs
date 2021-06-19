@@ -764,9 +764,7 @@ namespace FreeLauncher.Forms
             }
 
             var selectedLocalization = LangDropDownList.SelectedItem.Tag;
-            _configuration.SetLocalization(LangDropDownList.SelectedIndex == 0
-                ? string.Empty
-                : selectedLocalization.ToString());
+            _configuration.SetLocalization(selectedLocalization.ToString());
 
             _cfg.SelectedLanguage = selectedLocalization.ToString();
             AppendLog($"Application language switched to {selectedLocalization}");

@@ -20,7 +20,6 @@ namespace FreeLauncher
             ThemeResolutionService.ApplicationThemeName = "VisualStudio2012Dark";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            RadMessageBox.SetThemeName("VisualStudio2012Dark");//For some reason dont work here outside a form
             VersionCheck(args);
         }
 
