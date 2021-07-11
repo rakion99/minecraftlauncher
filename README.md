@@ -13,7 +13,7 @@
 
  ![](https://i.imgur.com/hB1Mkin.png)
  
- ![](https://i.imgur.com/5riBwgo.png)
+ ![](https://i.imgur.com/wkx6p09.png)
  
 # Requirements:
 
@@ -21,6 +21,8 @@
 * Around 200-300mb of Disk space(Launcher only need 6.3Mb)
 
 **See the wiki for how to use and more: [Wiki](https://github.com/rakion99/minecraftlauncher/wiki)**
+
+This is open source unofficial Minecraft launcher, based on FreeLauncher with dotMCLauncher by dedepete. Feel free to contibute.
 
 # Credits:
  dedepete for making it https://github.com/dedepete
