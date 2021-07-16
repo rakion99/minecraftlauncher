@@ -246,7 +246,7 @@ namespace dotMCLauncher.Versioning
             VersionManifest manifest = InheritableVersionManifest;
             while (true)
             {
-                if (InheritsFrom == null)
+                if (manifest?.InheritsFrom == null)
                 {
                     if (JavaVersionInfo != null)
                     {
