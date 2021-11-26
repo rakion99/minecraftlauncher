@@ -104,7 +104,7 @@ namespace FreeLauncher.Forms
             checkingversionavailabilityfinish, downloading, offlinemode, cantdownloadversion, logsdisabled, preparinglibraries, downloadfailed, cantdownload,
             finishedlibraries, checkinggamedata, downloadinggamedata, gamedatafinished, cantconnectinternet, checkinternet, langlabel;
 
-        public static bool useJava16 = false;
+        public static string retrieveJava = "8";
 
         #endregion
 
@@ -566,7 +566,7 @@ namespace FreeLauncher.Forms
                             jvmArguments = javaArguments +
                                 $"-Djava.library.path={nativesPath} -cp {(libraries.Contains(' ') ? $@"""{libraries}""" : libraries)}";
                         }
-                        useJava16 = selectedVersionManifest.GetJavaVersion() != null;
+                        retrieveJava = selectedVersionManifest.GetJavaVersion();
                         BackgroundWorker bgw3 = new BackgroundWorker();
                         bgw3.DoWork += delegate
                         {
@@ -1223,14 +1223,14 @@ namespace FreeLauncher.Forms
         {
             get
             {
-                if (useJava16)
-                {
-                    return "16";
-                }
-                else
+                if (retrieveJava == null)
                 {
                     return "8";
                 }
+                else
+                {
+                    return retrieveJava;
+                }    
             }
         }
 
