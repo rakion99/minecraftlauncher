@@ -22,6 +22,10 @@
                 <Version>16.0.1</Version>
                 <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java16_32bit.zip</DownloadUrl>
             </Java16>
+            <Java17>
+                <Version>17.0.1</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java17_32bit.zip</DownloadUrl>
+            </Java17>
         </Version32bit>
         <Version64bit>
             <Java8>
@@ -32,6 +36,10 @@
                 <Version>16.0.1</Version>
                 <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java16_64bit.zip</DownloadUrl>
             </Java16>
+            <Java17>
+                <Version>17.0.1</Version>
+                <DownloadUrl>https://github.com/rakion99/minecraftlauncher/raw/gh-pages/Java17_64bit.zip</DownloadUrl>
+            </Java17>
         </Version64bit>
     </Java>
 </Launcher>
