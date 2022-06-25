@@ -232,6 +232,8 @@ namespace dotMCLauncher.Versioning
             if (InheritableVersionManifest != null && InheritableVersionManifest.Type == VersionManifestType.V2) {
                 toReturn = (toReturn == string.Empty ? string.Empty : toReturn + " ") + InheritableVersionManifest.BuildArgumentsByGroup(group, jvmArgumentDictionary, rules);
             }
+            //workaround for some Fabric loader versions since their json jvm args are in other format??
+            toReturn = toReturn.Replace("-DFabricMcEmu= net.minecraft", "-DFabricMcEmu=net.minecraft");
             return toReturn;
         }
 
