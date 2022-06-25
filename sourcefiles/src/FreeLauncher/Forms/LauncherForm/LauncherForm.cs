@@ -305,6 +305,19 @@ namespace FreeLauncher.Forms
             UpdateUserList();
         }
 
+        private string GetOfflinePlayerUUID(string username, bool format = false)
+        {
+            byte[] rawresult = System.Security.Cryptography.MD5.Create().ComputeHash(Encoding.UTF8.GetBytes($"OfflinePlayer:{username}"));
+            rawresult[6] = (byte)(rawresult[6] & 0x0f | 0x30);
+            rawresult[8] = (byte)(rawresult[8] & 0x3f | 0x80);
+            string finalresult = BitConverter.ToString(rawresult).Replace("-", "");
+            if (format)
+            {
+                finalresult = finalresult.Insert(8, "-").Insert(13, "-").Insert(18, "-").Insert(23, "-");
+            }
+            return finalresult;
+        }
+
         private void LaunchButton_Click(object sender, EventArgs e)
         {
             SetControlBlockState(true);
@@ -466,15 +479,19 @@ namespace FreeLauncher.Forms
                             }, {
                                 "auth_session", $"token:{_selectedUser.ClientToken}:{_selectedUser.Uuid}" ?? "token:616e7963726166740d0a:616e7963726166740d0a"
                             }, {
-                                "auth_access_token", _selectedUser.AccessToken ?? "616e7963726166740d0a"
+                                "auth_access_token", _selectedUser.AccessToken ?? GetOfflinePlayerUUID(username)
                             }, {
-                                "auth_uuid", _selectedUser.Uuid ?? "616e7963726166740d0a"
+                                "auth_uuid", _selectedUser.Uuid ?? GetOfflinePlayerUUID(username)
                             }, {
                                 "user_properties",
                                 _selectedUser.UserProperties?.ToString(Formatting.None) ??
                                 properties.ToString(Formatting.None)
                             }, {
                                 "user_type", _selectedUser.Type
+                            }, {
+                                "clientid", "0"
+                            }, {
+                                "auth_xuid", "0"
                             }
                         };
                         Dictionary<string, string> jvmArgumentDictionary = new Dictionary<string, string> {
@@ -486,6 +503,14 @@ namespace FreeLauncher.Forms
                                 "launcher_version", Application.ProductVersion
                             }, {
                                 "classpath", libraries//libraries.Contains(' ') ? $"\"{libraries}\"" : libraries
+                            }, 
+                            //Forge jvm stuff
+                            {
+                                "version_name", selectedVersionManifest.GetBaseJar()
+                            }, {
+                                "library_directory", Path.Combine(_configuration.McDirectory, "libraries")
+                            }, {
+                                "classpath_separator", ";"
                             }
                         };
                         string gameArguments, jvmArguments, ServerArguments;
