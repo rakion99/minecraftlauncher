@@ -37,7 +37,6 @@ namespace FreeLauncher.Forms
         private readonly Dictionary<string, Tuple<string, DateTime>> _nicknameDictionary;
         private readonly ApplicationConfiguration _cfg;
         private string _versionToLaunch;
-        private bool _restoreVersion;
 
         private static int LinuxTimeStamp => (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
@@ -344,15 +343,6 @@ namespace FreeLauncher.Forms
                     };
                     bgw2.RunWorkerCompleted += delegate
                     {
-                        if (_restoreVersion)
-                        {
-                            AppendLog($@"Successfully restored ""{_versionToLaunch}"" version.");
-                            _restoreVersion = false;
-                            SetControlBlockState(false);
-                            UpdateVersionListView();
-                            _versionToLaunch = null;
-                            return;
-                        }
                         if (!_userManager.Accounts.ContainsKey(NicknameDropDownList.Text))
                         {
                             User user = new User
@@ -678,20 +668,6 @@ namespace FreeLauncher.Forms
                 _versionToLaunch = versionsListView.SelectedItem[0].ToString();
                 LaunchButton.PerformClick();
             };
-            bool enableRestoreButton = !_configuration.Arguments.OfflineMode &&
-                (ver.ReleaseType == "release" || ver.ReleaseType == "snapshot" ||
-                    ver.ReleaseType == "old_beta" || ver.ReleaseType == "old_alpha");
-            RadMenuItem restoreVerButton = new RadMenuItem
-            {
-                Text = _configuration.Localization.Restore,
-                Enabled = enableRestoreButton
-            };
-            restoreVerButton.Click += delegate
-            {
-                _restoreVersion = true;
-                _versionToLaunch = versionsListView.SelectedItem[0].ToString();
-                LaunchButton.PerformClick();
-            };
             RadMenuItem openVerButton = new RadMenuItem
             {
                 Text = _configuration.Localization.OpenLocation
@@ -738,8 +714,6 @@ namespace FreeLauncher.Forms
             };
             RadContextMenu verListMenuStrip = new RadContextMenu();
             verListMenuStrip.Items.Add(launchVerButton);
-            verListMenuStrip.Items.Add(new RadMenuSeparatorItem());
-            verListMenuStrip.Items.Add(restoreVerButton);
             verListMenuStrip.Items.Add(new RadMenuSeparatorItem());
             verListMenuStrip.Items.Add(openVerButton);
             verListMenuStrip.Items.Add(delVerButton);
@@ -953,7 +927,7 @@ namespace FreeLauncher.Forms
             {
                 Directory.CreateDirectory(path);
             }
-            if (!File.Exists($@"{path}\{version}.json") || _restoreVersion)
+            if (!File.Exists($@"{path}\{version}.json"))
             {
                 if (!_configuration.Arguments.OfflineMode)
                 {
@@ -973,7 +947,7 @@ namespace FreeLauncher.Forms
             StatusBarValue = 0;
             VersionManifest selectedVersionManifest = VersionManifest.ParseVersion(
                 new DirectoryInfo(_configuration.McVersions + @"\" + version), false);
-            if ((!File.Exists($"{path}/{version}.jar") || _restoreVersion) &&
+            if ((!File.Exists($"{path}/{version}.jar")) &&
                 selectedVersionManifest.InheritsFrom == null)
             {
                 if (!_configuration.Arguments.OfflineMode)
@@ -1052,8 +1026,7 @@ namespace FreeLauncher.Forms
             foreach (DownloadEntry entry in libsToDownload.Keys)
             {
                 StatusBarValue++;
-                if (!File.Exists(_configuration.McLibs + @"\" + entry.Path) ||
-                    _restoreVersion)
+                if (!File.Exists(_configuration.McLibs + @"\" + entry.Path))
                 {
                     if (!_configuration.Arguments.OfflineMode)
                     {
@@ -1145,9 +1118,9 @@ namespace FreeLauncher.Forms
             StatusBarValue = 0;
             UpdateStatusBarAndLog(downloadinggamedata);
             SetStatusBarMaxValue(manifest.Objects.Select(pair => pair.Value.Hash.GetFullPath()).Count(filename => !File.Exists(_configuration.McDirectory + @"\assets\objects\" +
-                filename) || _restoreVersion) + 1);
+                filename)) + 1);
             foreach (Asset asset in manifest.Objects.Select(pair => pair.Value).Where(asset => !File.Exists(_configuration.McDirectory + @"\assets\objects\" +
-                asset.Hash.GetFullPath()) || _restoreVersion))
+                asset.Hash.GetFullPath())))
             {
                 string directory = _configuration.McDirectory + @"\assets\objects\" + asset.Hash.GetDirectoryName();
                 if (!Directory.Exists(directory))
@@ -1174,12 +1147,12 @@ namespace FreeLauncher.Forms
                     .Count(
                         filename =>
                             !File.Exists(_configuration.McDirectory + @"\assets\virtual\legacy\" +
-                                filename) || _restoreVersion) + 1);
+                                filename)) + 1);
                 UpdateStatusBarAndLog("Converting assets...");
                 foreach (Asset asset in manifest.Objects.Select(pair => pair.Value)
                     .Where(asset =>
                         !File.Exists(_configuration.McDirectory + @"\assets\virtual\legacy\" +
-                            asset.AssociatedName) || _restoreVersion))
+                            asset.AssociatedName)))
                 {
                     string filename = _configuration.McDirectory + @"\assets\virtual\legacy\" + asset.AssociatedName;
                     try
@@ -1454,15 +1427,23 @@ namespace FreeLauncher.Forms
             else
             {
                 versionsListView.Items.Clear();
-                foreach (
-                    VersionManifest version in
-                    Directory.GetDirectories(_configuration.McVersions)
-                        .Select(versionDir => new DirectoryInfo(versionDir))
-                        .Where(VersionManifest.IsValid)
-                        .Select(info => VersionManifest.ParseVersion(info, true)))
+                try
                 {
-                    versionsListView.Items.Add(version.VersionId, version.ReleaseType, version.ReleaseTime, version.LastUpdateTime,
-                        version.GetAssetsIndex(), version.InheritsFrom ?? _configuration.Localization.Independent);
+                    foreach (
+                                VersionManifest version in
+                                Directory.GetDirectories(_configuration.McVersions)
+                                    .Select(versionDir => new DirectoryInfo(versionDir))
+                                    .Where(VersionManifest.IsValid)
+                                    .Select(info => VersionManifest.ParseVersion(info, true)))
+                    {
+                        versionsListView.Items.Add(version.VersionId, version.ReleaseType, version.ReleaseTime, version.LastUpdateTime,
+                            version.GetAssetsIndex(), version.InheritsFrom ?? _configuration.Localization.Independent);
+                    }
+                }
+                catch (Exception aw)
+                {
+                    MessageBox.Show(aw.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    Environment.Exit(-1);
                 }
                 string path = Path.Combine(_configuration.McVersions,
                     _selectedProfile.SelectedVersion ?? GetLatestVersion(_selectedProfile));
