@@ -1155,7 +1155,7 @@ namespace FreeLauncher.Forms
                 try
                 {
                     AppendDebug($"{downloading} {asset.Hash}...");
-                    new WebClient().DownloadFile(@"http://resources.download.minecraft.net/" + asset.Hash.GetFullPath(),
+                    new WebClient().DownloadFile(@"https://resources.download.minecraft.net/" + asset.Hash.GetFullPath(),
                         _configuration.McDirectory + @"\assets\objects\" + asset.Hash.GetFullPath());
                 }
                 catch (Exception ex)
