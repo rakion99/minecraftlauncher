@@ -53,6 +53,7 @@ namespace FreeLauncher.Forms.UpdateForm
             }
             catch (Exception ex)
             {
+                TopMost = true;
                 MessageBox.Show(ex.Message.ToString(), "Download Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
@@ -64,6 +65,7 @@ namespace FreeLauncher.Forms.UpdateForm
         {
             if (!e.Cancelled && e.Error == null)
             {
+                TopMost = true;
                 MessageBox.Show("Download complete\nUpdater will close and Launcher will run", "Download complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 new Thread(() =>
                 {
@@ -78,7 +80,7 @@ namespace FreeLauncher.Forms.UpdateForm
         {
             if (!e.Cancelled && e.Error == null)
             {
-
+                TopMost = true;
                 MessageBox.Show("Download Completed\nUpdater will close and Launcher will run", "Download Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 new Thread(() =>
                 {

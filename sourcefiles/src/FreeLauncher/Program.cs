@@ -89,8 +89,6 @@ namespace FreeLauncher
                 () => Application.Run(SplashScreen)));
             splashThread.SetApartmentState(System.Threading.ApartmentState.STA);
             splashThread.Start();
-            MainForm = new LauncherForm(configuration);
-            MainForm.Load += MainForm_LoadCompleted;
 
             using (WebClient client = new WebClient())
             {
@@ -200,7 +198,8 @@ namespace FreeLauncher
                 }
             }
 
-            
+            MainForm = new LauncherForm(configuration);
+            MainForm.Load += MainForm_LoadCompleted;
             Application.Run(MainForm);
 
             configuration.SaveConfiguration();
